@@ -1,0 +1,13 @@
+import React, { Component } from 'react'
+
+class App extends Component {
+    redner() {
+        return (
+            <div>
+                <h1>Tosho</h1>
+            </div>
+        )
+    }
+}
+
+export default App
