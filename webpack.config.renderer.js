@@ -1,14 +1,18 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
-const { output } = require('./webpack.config.main')
 
 module.exports = {
-    entry: 'renderer.js',
+    entry: {
+        renderer: './renderer.js'
+    },
+        
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, 'dist/')
+        path: path.join(__dirname, './dist/renderer/')
     },
+
     target: 'electron-renderer',
+
     module: {
         rules: [
             {
@@ -18,10 +22,18 @@ module.exports = {
             }
         ]
     },
+
     devtool: 'source-map',
+
     devServer: {
-        static: path.join(__dirname, './dist/renderer')
+        static: {
+            directory: path.join(__dirname, './dist/renderer/')
+        },
+        port: 8080,
+        hot: false,
+        liveReload: true
     },
+
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html'

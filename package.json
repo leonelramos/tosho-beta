@@ -2,10 +2,14 @@
   "name": "tosho",
   "version": "1.0.0",
   "description": "Your personal librarian.",
-  "main": "electron/main.js",
+  "main": "./dist/electron/main.js",
   "scripts": {
-    "build": "webpack .",
-    "start": "electron ."
+    "run" : "electron .",
+    "build:main": "NODE_ENV=development webpack --config webpack.config.main.js --mode development",
+    "build:rend": "NODE_ENV=development webpack --config webpack.config.renderer.js --mode development",
+    "build:all": "NODE_ENV=development webpack --config webpack.config.main.js --mode development && NODE_ENV=development webpack --config webpack.config.renderer.js --mode development",
+    "run:main": "NODE_ENV=development webpack --config webpack.config.main.js --mode development && electron .",
+    "serve:rend": "NODE_ENV=development webpack-dev-server --config webpack.config.renderer.js --mode development"
   },
   "keywords": [
     "library",
@@ -19,6 +23,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
     "@babel/preset-react": "^7.14.5",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.2.2",

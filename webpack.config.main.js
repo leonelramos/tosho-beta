@@ -1,12 +1,17 @@
 const path = require('path')
 
 module.exports = {
-    entry: './electron/main.js',
+    entry: {
+        main: './electron/main.js'
+    },
+
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, 'dist/')
+        path: path.join(__dirname, './dist/electron/')
     },
-    target: ['electron-main', 'node'],
+
+    target: ['electron-main'],
+
     module: {
         rules: [
             {
@@ -18,5 +23,6 @@ module.exports = {
             }
         ]
     },
+
     devtool: 'source-map'
 }
