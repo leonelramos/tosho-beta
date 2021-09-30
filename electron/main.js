@@ -9,14 +9,15 @@ function createWindow() {
         height: 600,
         webPreferences: {
             nodeIntegration: true,
-            contextIsolation: false
+            contextIsolation: false,
+            preload: path.join(__dirname, './preload.js')
         }
     })
 
     if(isDevelopment) {
         window.loadURL("http://localhost:8080")
     } else {
-        window.loadFile(path.join(__dirname, "./renderer/index.html"))
+        window.loadFile(path.join(__dirname, './renderer/index.html'))
     }
 }
 
