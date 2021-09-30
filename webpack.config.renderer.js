@@ -3,7 +3,7 @@ const path = require('path')
 
 module.exports = {
     entry: {
-        renderer: './renderer.js'
+        renderer: './electron/renderer.js'
     },
         
     output: {
