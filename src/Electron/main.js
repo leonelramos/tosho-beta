@@ -1,5 +1,5 @@
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
+import { app, BrowserWindow } from 'electron'
+import path from 'path'
 
 const isDevelopment = process.env.NODE_ENV === "development"
 
@@ -10,14 +10,14 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            preload: path.join(__dirname, './preload.js')
+            preload: path.join(__dirname, 'preload.js')
         }
     })
 
     if(isDevelopment) {
         window.loadURL("http://localhost:8080")
     } else {
-        window.loadFile(path.join(__dirname, './renderer/index.html'))
+        window.loadFile(path.join(__dirname, 'renderer', 'index.html'))
     }
 }
 

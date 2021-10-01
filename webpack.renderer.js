@@ -3,12 +3,12 @@ const path = require('path')
 
 module.exports = {
     entry: {
-        renderer: './electron/renderer.js'
+        renderer: path.join(__dirname, 'src', 'Electron', 'renderer.js')
     },
         
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, './dist/renderer/')
+        path: path.join(__dirname, 'dist', 'renderer')
     },
 
     target: 'electron-renderer',
@@ -27,7 +27,7 @@ module.exports = {
 
     devServer: {
         static: {
-            directory: path.join(__dirname, './dist/renderer/')
+            directory: path.join(__dirname, 'dist', 'renderer')
         },
         port: 8080,
         hot: false,
@@ -36,7 +36,7 @@ module.exports = {
 
     plugins: [
         new HtmlWebpackPlugin({
-            template: './index.html'
+            template: path.join(__dirname, 'src', 'index.html')
         })
     ]
 }

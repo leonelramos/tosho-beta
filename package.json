@@ -2,14 +2,14 @@
   "name": "tosho",
   "version": "1.0.0",
   "description": "Your personal librarian.",
-  "main": "./dist/electron/main.js",
+  "main": "./dist/main.js",
   "scripts": {
-    "run" : "electron .",
-    "build:main": "NODE_ENV=development webpack --config webpack.config.preload.js --mode development && NODE_ENV=development webpack --config webpack.config.main.js --mode development",
-    "build:rend": "NODE_ENV=development webpack --config webpack.config.renderer.js --mode development",
-    "build:all": "NODE_ENV=development webpack --config webpack.config.preload.js --mode development && NODE_ENV=development webpack --config webpack.config.main.js --mode development && NODE_ENV=development webpack --config webpack.config.renderer.js --mode development",
-    "run:main": "NODE_ENV=development webpack --config webpack.config.preload.js --mode development && NODE_ENV=development webpack --config webpack.config.main.js --mode development && electron .",
-    "serve:rend": "NODE_ENV=development webpack-dev-server --config webpack.config.renderer.js --mode development"
+    "start": "electron .",
+    "build:main": "NODE_ENV=development webpack --config webpack.preload.js --mode development && NODE_ENV=development webpack --config webpack.main.js --mode development",
+    "build:rend": "NODE_ENV=development webpack --config webpack.renderer.js --mode development",
+    "build": "NODE_ENV=development webpack --config webpack.preload.js --mode development && NODE_ENV=development webpack --config webpack.main.js --mode development && NODE_ENV=development webpack --config webpack.renderer.js --mode development",
+    "main": "NODE_ENV=development webpack --config webpack.preload.js --mode development && NODE_ENV=development webpack --config webpack.main.js --mode development && electron .",
+    "rend": "NODE_ENV=development webpack-dev-server --config webpack.renderer.js --mode development"
   },
   "keywords": [
     "library",
@@ -35,7 +35,9 @@
     "webpack-dev-server": "^4.3.0"
   },
   "dependencies": {
+    "pdfjs": "^2.4.6",
     "react": "^17.0.2",
+    "react-burger-menu": "^3.0.6",
     "react-dom": "^17.0.2"
   }
 }

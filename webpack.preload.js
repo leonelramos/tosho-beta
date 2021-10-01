@@ -2,12 +2,12 @@ const path = require('path')
 
 module.exports = {
     entry: {
-        preload: './electron/preload.js'
+        preload: path.join(__dirname, 'src', 'Electron', 'preload.js')
     },
 
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, './dist/')
+        path: path.join(__dirname, 'dist')
     },
 
     target: ['electron-preload'],
