@@ -22,7 +22,7 @@ module.exports = {
                 use: ['babel-loader']
             },
             {
-                test: /\.epub$/,
+                test: [/\.(epub|png|svg|jpe?g|gif)$/],
                 exclude: /node_modules/,
                 type: 'asset'
             }
