@@ -7,7 +7,7 @@
     "start": "electron .",
     "build:main": "NODE_ENV=development webpack --config webpack.preload.js --mode development && NODE_ENV=development webpack --config webpack.main.js --mode development",
     "build:rend": "NODE_ENV=development webpack --config webpack.renderer.js --mode development",
-    "build": "NODE_ENV=development webpack --config webpack.preload.js --mode development && NODE_ENV=development webpack --config webpack.main.js --mode development && NODE_ENV=development webpack --config webpack.renderer.js --mode development",
+    "build": "rm -rf ./dist && NODE_ENV=development webpack --config webpack.preload.js --mode development && NODE_ENV=development webpack --config webpack.main.js --mode development && NODE_ENV=development webpack --config webpack.renderer.js --mode development",
     "main": "NODE_ENV=development webpack --config webpack.preload.js --mode development && NODE_ENV=development webpack --config webpack.main.js --mode development && electron .",
     "rend": "NODE_ENV=development webpack-dev-server --config webpack.renderer.js --mode development"
   },

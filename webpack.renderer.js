@@ -8,7 +8,8 @@ module.exports = {
         
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, 'dist', 'renderer')
+        path: path.join(__dirname, 'dist', 'renderer'),
+        assetModuleFilename: '[name].[hash][ext]'
     },
 
     target: 'electron-renderer',
@@ -19,6 +20,11 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
+            },
+            {
+                test: /\.epub$/,
+                exclude: /node_modules/,
+                type: 'asset'
             }
         ]
     },

@@ -1,19 +1,47 @@
-import React, { Children } from "react";
-import { Box } from "@chakra-ui/layout";
-import LibraryItem from "./LibraryItem";
+import React, { useState } from "react";
+import { Flex, Box } from "@chakra-ui/layout";
+import LibraryBook from "./LibraryBook";
 
-export default function Library() {
+const testBookUrl = new URL("../../../testing-books/Wonder Tales.epub", import.meta.url)
+//const testBookUrl = path.resolve("../../../testing-books/Wonder Tales.epub")
+
+export default function Library(props) {
+    const testBook = {
+        title: "Dune",
+        author: "Frank Herbert",
+        url: testBookUrl,
+        coverUrl: "https://images-na.ssl-images-amazon.com/images/I/A1u+2fY5yTL.jpg",
+        coverAlt: "Dune by Frank Herbert"
+    }
+
+    console.log(testBook.url)
+
+    const testDetails = {
+        enable: true,
+        status: "READING",
+        progress: 65
+    }
+
     return (
         <LibraryContainer>
-            <LibraryItem />
+            {
+                [...Array(10)].map((_, key) => {
+                    return <LibraryBook key={key} details={testDetails} book={testBook}/>
+                })   
+            }
         </LibraryContainer>
     )
 }
 
 function LibraryContainer(props) {
-    return (
-        <Box>
+    return (<>
+        <Flex 
+            flexWrap="wrap"
+            justifyContent="space-between"
+            margin="15px"
+            className="library-container"
+        >
             {props.children}
-        </Box>
-    )
+        </Flex>
+    </>)
 }

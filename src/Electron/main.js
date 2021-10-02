@@ -14,7 +14,7 @@ function createWindow() {
         }
     })
 
-    if(isDevelopment) {
+    if(false) {
         window.loadURL("http://localhost:8080")
     } else {
         window.loadFile(path.join(__dirname, 'renderer', 'index.html'))

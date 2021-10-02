@@ -1,36 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Badge, Image } from '@chakra-ui/react'
 import { StarIcon } from '@chakra-ui/icons'
 
-export default function LibraryItem(props) {
-    const property = {
-        imageUrl: "https://images-na.ssl-images-amazon.com/images/I/A1u+2fY5yTL.jpg",
-        imageAlt: "Dune by Frank Herbert",
-        title: "Dune",
-        author: "Frank Herbert",
-    }
-
-    const styles = {
-
-    }
+export default function LibraryBook(props) {
+    let [book, setBook] = useState(props.book);
+    let details = props.details;
 
     return (
-        <ItemCard>
-            <Image src={property.imageUrl} alt={property.imageAlt} />
+        <Card className="LibraryBook">
+            <Image src={book.coverUrl} alt={book.coverAlt} />
 
-            {props.showDetails && 
+            {details.enable && 
                 <Details>
-                    <Status progress="65" />
-                    <ItemInfo title="Dune" author="Frank Herbert" />
+                    {/* <Status status={details.status} progress={details.progress} /> */}
+                    <Info title={book.title} author={book.author} />
                 </Details>
             }
-        </ItemCard>
+        </Card>
     )
 }
 
-function ItemCard(props) {
+function Card(props) {
+    const styles = {
+        mb:"15px", 
+        maxW:"20vmax",
+        borderWidth:"1px",
+        borderRadius:"sm",
+        overflow:"hidden"
+    }
     return (
-        <Box maxW="20vmax" borderWidth="1px" borderRadius="sm" overflow="hidden">
+        <Box {...styles}>
             {props.children}
         </Box>
     )
@@ -62,7 +61,7 @@ function Status(props) {
     )
 }
 
-function ItemInfo(props) {
+function Info(props) {
     return (<>
     <Box
         mt="1"
