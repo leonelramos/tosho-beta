@@ -1,1 +1,1 @@
-import { fs } from 'node'
+import { fs } from 'node';

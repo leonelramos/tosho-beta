@@ -1,3 +1,3 @@
 window.addEventListener('DOMContentLoaded', () => {
-    console.log("preloading stuff!")
-})
+  console.log('preloading stuff!');
+});
