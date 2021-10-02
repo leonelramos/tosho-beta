@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Flex, Box } from '@chakra-ui/layout';
 import LibraryBook from './LibraryBook';
+import { getBooksAsync } from '../../Utils/bookcreator';
 
-const testBookUrl = new URL('../../../testing-books/Wonder Tales.epub', import.meta.url);
-// const testBookUrl = path.resolve("../../../testing-books/Wonder Tales.epub")
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+const testBooksUrl = isDevelopment ? './testing-books' : new URL('../../../testing-books/Dracula.epub', import.meta.url).href;
 
 export default function Library(props) {
-  const testBook = {
-    title: 'Dune',
-    author: 'Frank Herbert',
-    url: testBookUrl,
-    coverUrl: 'https://images-na.ssl-images-amazon.com/images/I/A1u+2fY5yTL.jpg',
-    coverAlt: 'Dune by Frank Herbert',
-  };
-
-  console.log(testBook.url);
+  useEffect(async () => {
+    getBooksAsync(testBooksUrl)
+      .then(books => {
+        console.log(books);
+      })
+  })
 
   const testDetails = {
     enable: true,
@@ -24,9 +23,9 @@ export default function Library(props) {
 
   return (
     <LibraryContainer>
-      {
-                [...Array(10)].map((_, key) => <LibraryBook key={key} details={testDetails} book={testBook} />)
-            }
+      {/* {
+        [...Array(10)].map((_, key) => <LibraryBook key={key} details={testDetails} book={testBook} />)
+      } */}
     </LibraryContainer>
   );
 }
