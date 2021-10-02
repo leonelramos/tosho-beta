@@ -1,8 +1,8 @@
-import { readdir } from 'fs/promises';
-import path from 'path';
-import { BookModel } from '../Models/BookModel';
+import { readdir } from "fs/promises";
+import path from "path";
+import { BookModel } from "../Models/BookModel";
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV === "development";
 
 export async function getBooksAsync(url) {
   const absolutePath = path.resolve(url);
@@ -15,9 +15,11 @@ export async function getBooksAsync(url) {
       console.log(`Final book list: ${books}`);
       return books;
     })
-    .catch((err) => console.log(
-      `Error when trying to read from directory ${absolutePath} - ${err}`,
-    ));
+    .catch((err) =>
+      console.log(
+        `Error when trying to read from directory ${absolutePath} - ${err}`
+      )
+    );
 }
 
 async function createBooksAsync(absolutePath, files) {
@@ -26,7 +28,7 @@ async function createBooksAsync(absolutePath, files) {
 
   files.forEach((file) => {
     const filepath = path.join(dir, file);
-    if (path.extname(file) === '.epub') {
+    if (path.extname(file) === ".epub") {
       console.log(`${file} added!`);
       books.push(new BookModel(filepath));
     }

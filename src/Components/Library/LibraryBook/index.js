@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Box, Badge, Image } from '@chakra-ui/react';
-import { StarIcon } from '@chakra-ui/icons';
+import React, { useState } from "react";
+import { Box, Badge, Image } from "@chakra-ui/react";
+import { StarIcon } from "@chakra-ui/icons";
 
 export default function LibraryBook(props) {
   const [book, setBook] = useState(props.book);
@@ -22,11 +22,11 @@ export default function LibraryBook(props) {
 
 function Card(props) {
   const styles = {
-    mb: '15px',
-    maxW: '20vmax',
-    borderWidth: '1px',
-    borderRadius: 'sm',
-    overflow: 'hidden',
+    mb: "15px",
+    maxW: "20vmax",
+    borderWidth: "1px",
+    borderRadius: "sm",
+    overflow: "hidden",
   };
   return <Box {...styles}>{props.children}</Box>;
 }
@@ -49,8 +49,7 @@ function Status(props) {
         textTransform="uppercase"
         ml="2"
       >
-        {props.progress}
-        % Done
+        {props.progress}% Done
       </Box>
     </Box>
   );
@@ -63,11 +62,7 @@ function Info(props) {
         {props.title}
       </Box>
 
-      <Box>
-        {' '}
-        {props.author}
-        {' '}
-      </Box>
+      <Box> {props.author} </Box>
     </>
   );
 }
@@ -76,17 +71,15 @@ function Ratings(props) {
   return (
     <Box d="flex" mt="2" alignItems="center">
       {Array(5)
-        .fill('')
+        .fill("")
         .map((_, i) => (
           <StarIcon
             key={i}
-            color={i < props.rating ? 'teal.500' : 'gray.300'}
+            color={i < props.rating ? "teal.500" : "gray.300"}
           />
         ))}
       <Box as="span" ml="2" color="gray.600" fontSize="sm">
-        {props.reviewCount}
-        {' '}
-        reviews
+        {props.reviewCount} reviews
       </Box>
     </Box>
   );

@@ -1,7 +1,7 @@
-import { app, BrowserWindow } from 'electron';
-import path from 'path';
+import { app, BrowserWindow } from "electron";
+import path from "path";
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV === "development";
 
 function createWindow() {
   const window = new BrowserWindow({
@@ -10,25 +10,25 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 
   if (isDevelopment) {
-    window.loadURL('http://localhost:8080');
+    window.loadURL("http://localhost:8080");
   } else {
-    window.loadFile(path.join(__dirname, 'renderer', 'index.html'));
+    window.loadFile(path.join(__dirname, "renderer", "index.html"));
   }
 }
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") app.quit();
 });
 
 app.whenReady().then(() => {
   createWindow();
 
-  app.on('activate', () => {
+  app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Flex, Box } from '@chakra-ui/layout';
-import LibraryBook from './LibraryBook';
-import { getBooksAsync } from '../../Utils/bookcreator';
+import React, { useEffect, useState } from "react";
+import { Flex, Box } from "@chakra-ui/layout";
+import LibraryBook from "./LibraryBook";
+import { getBooksAsync } from "../../Utils/bookcreator";
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV === "development";
 
 const testBooksUrl = isDevelopment
-  ? './testing-books'
-  : new URL('../../../testing-books/Dracula.epub', import.meta.url).href;
+  ? "./testing-books"
+  : new URL("../../../testing-books/Dracula.epub", import.meta.url).href;
 
 export default function Library(props) {
   useEffect(async () => {
@@ -18,7 +18,7 @@ export default function Library(props) {
 
   const testDetails = {
     enable: true,
-    status: 'READING',
+    status: "READING",
     progress: 65,
   };
 
