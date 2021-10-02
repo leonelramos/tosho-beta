@@ -1,8 +1,7 @@
-import { readdir } from "fs/promises";
-import path from "path";
-import { BookModel } from "../Models/BookModel";
-
-const isDevelopment = process.env.NODE_ENV === "development";
+import { readdir } from 'fs/promises';
+import path from 'path';
+import { BookModel } from '../Models/BookModel';
+import supportedextensions from './supportedextensions';
 
 export async function getBooksAsync(url) {
   const absolutePath = path.resolve(url);
@@ -28,7 +27,8 @@ async function createBooksAsync(absolutePath, files) {
 
   files.forEach((file) => {
     const filepath = path.join(dir, file);
-    if (path.extname(file) === ".epub") {
+
+    if (supportedextensions.includes(path.extname(file))) {
       console.log(`${file} added!`);
       books.push(new BookModel(filepath));
     }
