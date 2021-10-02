@@ -5,7 +5,7 @@
   "main": "./dist/main.js",
   "scripts": {
     "pretty": "npx prettier --write .",
-    "eslint": "eslint --fix ./src && eslint --fix ./configs",
+    "eslint": "eslint --fix ./src ./webpack.*.js",
     "start": "electron .",
     "build:main": "NODE_ENV=development webpack --config webpack.preload.js --mode development && NODE_ENV=development webpack --config webpack.main.js --mode development",
     "build:rend": "NODE_ENV=development webpack --config webpack.renderer.js --mode development",
@@ -37,7 +37,6 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "html-webpack-plugin": "^5.3.2",
     "prettier": "2.4.1",
     "webpack": "^5.55.0",
     "webpack-cli": "^4.8.0",
@@ -53,6 +52,7 @@
     "react": "^17.0.2",
     "react-burger-menu": "^3.0.6",
     "react-dom": "^17.0.2",
+    "html-webpack-plugin": "^5.3.2",
     "electron": "^15.1.0"
   }
 }

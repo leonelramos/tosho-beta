@@ -1,39 +1,39 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   entry: {
-    renderer: path.join(__dirname, "src", "Electron", "renderer.js"),
+    renderer: path.join(__dirname, 'src', 'Electron', 'renderer.js'),
   },
 
   output: {
-    filename: "[name].js",
-    path: path.join(__dirname, "dist", "renderer"),
-    assetModuleFilename: "[name].[hash][ext]",
+    filename: '[name].js',
+    path: path.join(__dirname, 'dist', 'renderer'),
+    assetModuleFilename: '[name].[hash][ext]',
   },
 
-  target: "electron-renderer",
+  target: 'electron-renderer',
 
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ["babel-loader"],
+        use: ['babel-loader'],
       },
       {
         test: [/\.(epub|png|svg|jpe?g|gif)$/],
         exclude: /node_modules/,
-        type: "asset",
+        type: 'asset',
       },
     ],
   },
 
-  devtool: "source-map",
+  devtool: 'source-map',
 
   devServer: {
     static: {
-      directory: path.join(__dirname, "dist", "renderer"),
+      directory: path.join(__dirname, 'dist', 'renderer'),
     },
     port: 8080,
     hot: false,
@@ -42,7 +42,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "index.html"),
+      template: path.join(__dirname, 'src', 'index.html'),
     }),
   ],
 };
