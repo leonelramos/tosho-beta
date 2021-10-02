@@ -1,28 +1,28 @@
-const path = require('path')
+const path = require("path");
 
 module.exports = {
-    entry: {
-        main: path.join(__dirname, 'src', 'Electron', 'main.js')
-    },
+  entry: {
+    main: path.join(__dirname, "src", "Electron", "main.js"),
+  },
 
-    output: {
-        filename: '[name].js',
-        path: path.join(__dirname, 'dist'),
-    },
+  output: {
+    filename: "[name].js",
+    path: path.join(__dirname, "dist"),
+  },
 
-    target: ['electron-main'],
+  target: ["electron-main"],
 
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
-            }
-        ]
-    },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+    ],
+  },
 
-    devtool: 'source-map'
-}
+  devtool: "source-map",
+};

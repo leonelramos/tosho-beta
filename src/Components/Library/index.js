@@ -5,15 +5,16 @@ import { getBooksAsync } from '../../Utils/bookcreator';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const testBooksUrl = isDevelopment ? './testing-books' : new URL('../../../testing-books/Dracula.epub', import.meta.url).href;
+const testBooksUrl = isDevelopment
+  ? './testing-books'
+  : new URL('../../../testing-books/Dracula.epub', import.meta.url).href;
 
 export default function Library(props) {
   useEffect(async () => {
-    getBooksAsync(testBooksUrl)
-      .then(books => {
-        console.log(books);
-      })
-  })
+    getBooksAsync(testBooksUrl).then((books) => {
+      console.log(books);
+    });
+  });
 
   const testDetails = {
     enable: true,

@@ -10,13 +10,12 @@ export default function LibraryBook(props) {
     <Card className="LibraryBook">
       <Image src={book.coverUrl} alt={book.coverAlt} />
 
-      {details.enable
-                && (
-                <Details>
-                  {/* <Status status={details.status} progress={details.progress} /> */}
-                  <Info title={book.title} author={book.author} />
-                </Details>
-                )}
+      {details.enable && (
+        <Details>
+          {/* <Status status={details.status} progress={details.progress} /> */}
+          <Info title={book.title} author={book.author} />
+        </Details>
+      )}
     </Card>
   );
 }
@@ -29,17 +28,11 @@ function Card(props) {
     borderRadius: 'sm',
     overflow: 'hidden',
   };
-  return (
-    <Box {...styles}>
-      {props.children}
-    </Box>
-  );
+  return <Box {...styles}>{props.children}</Box>;
 }
 
 function Details(props) {
-  return (
-    <Box p="2">{props.children}</Box>
-  );
+  return <Box p="2">{props.children}</Box>;
 }
 
 function Status(props) {
@@ -66,13 +59,7 @@ function Status(props) {
 function Info(props) {
   return (
     <>
-      <Box
-        mt="1"
-        fontWeight="semibold"
-        as="h4"
-        lineHeight="tight"
-        isTruncated
-      >
+      <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
         {props.title}
       </Box>
 
@@ -88,12 +75,14 @@ function Info(props) {
 function Ratings(props) {
   return (
     <Box d="flex" mt="2" alignItems="center">
-      {Array(5).fill('').map((_, i) => (
-        <StarIcon
-          key={i}
-          color={i < props.rating ? 'teal.500' : 'gray.300'}
-        />
-      ))}
+      {Array(5)
+        .fill('')
+        .map((_, i) => (
+          <StarIcon
+            key={i}
+            color={i < props.rating ? 'teal.500' : 'gray.300'}
+          />
+        ))}
       <Box as="span" ml="2" color="gray.600" fontSize="sm">
         {props.reviewCount}
         {' '}

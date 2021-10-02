@@ -1,28 +1,28 @@
-const path = require('path')
+const path = require("path");
 
 module.exports = {
-    entry: {
-        preload: path.join(__dirname, 'src', 'Electron', 'preload.js')
-    },
+  entry: {
+    preload: path.join(__dirname, "src", "Electron", "preload.js"),
+  },
 
-    output: {
-        filename: '[name].js',
-        path: path.join(__dirname, 'dist'),
-    },
+  output: {
+    filename: "[name].js",
+    path: path.join(__dirname, "dist"),
+  },
 
-    target: ['electron-preload'],
+  target: ["electron-preload"],
 
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
-            }
-        ]
-    },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+    ],
+  },
 
-    devtool: 'source-map'
-}
+  devtool: "source-map",
+};
