@@ -7,11 +7,11 @@
     "pretty": "npx prettier --write .",
     "eslint": "eslint --fix ./src ./webpack.*.js",
     "start": "electron .",
-    "build:main": "NODE_ENV=development webpack --config webpack.preload.js --mode development && NODE_ENV=development webpack --config webpack.main.js --mode development",
-    "build:rend": "NODE_ENV=development webpack --config webpack.renderer.js --mode development",
-    "build": "rm -rf ./dist && NODE_ENV=development webpack --config webpack.preload.js --mode development && NODE_ENV=development webpack --config webpack.main.js --mode development && NODE_ENV=development webpack --config webpack.renderer.js --mode development",
-    "main": "NODE_ENV=development webpack --config webpack.preload.js --mode development && NODE_ENV=development webpack --config webpack.main.js --mode development && electron .",
-    "rend": "NODE_ENV=development webpack-dev-server --config webpack.renderer.js --mode development"
+    "build:main": "cross-env NODE_ENV=development webpack --config webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack.main.js --mode development",
+    "build:rend": "cross-env NODE_ENV=development webpack --config webpack.renderer.js --mode development",
+    "build": "rm -rf ./dist && cross-env NODE_ENV=development webpack --config webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack.main.js --mode development && cross-env NODE_ENV=development webpack --config webpack.renderer.js --mode development",
+    "main": "cross-env NODE_ENV=development webpack --config webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack.main.js --mode development && electron .",
+    "rend": "cross-env NODE_ENV=development webpack-dev-server --config webpack.renderer.js --mode development"
   },
   "keywords": [
     "library",
@@ -30,6 +30,7 @@
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.2.2",
     "babel-preset-react": "^6.24.1",
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -47,12 +48,12 @@
     "@chakra-ui/react": "^1.6.8",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
+    "electron": "^15.1.0",
     "framer-motion": "^4.1.17",
+    "html-webpack-plugin": "^5.3.2",
     "pdfjs": "^2.4.6",
     "react": "^17.0.2",
     "react-burger-menu": "^3.0.6",
-    "react-dom": "^17.0.2",
-    "html-webpack-plugin": "^5.3.2",
-    "electron": "^15.1.0"
+    "react-dom": "^17.0.2"
   }
 }
