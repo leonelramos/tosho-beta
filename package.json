@@ -4,7 +4,7 @@
   "description": "Your personal librarian.",
   "main": "./dist/main.js",
   "scripts": {
-    "pretty": "npx prettier --write .",
+    "prettier": "npx prettier --write .",
     "eslint": "eslint --fix ./src ./webpack.*.js",
     "start": "electron .",
     "build:main": "cross-env NODE_ENV=development webpack --config webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack.main.js --mode development",
