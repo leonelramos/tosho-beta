@@ -1,7 +1,8 @@
 import { readdir } from 'fs/promises';
 import path from 'path';
+import epub from '../../externals/builds/epub'
 import { BookModel } from '../Models/BookModel';
-import supportedFileTypes from '../Shared/supportedfiletypes.js';
+import supportedFileTypes from '../Shared/supportedfiletypes';
 
 export async function getBooksAsync(url) {
   const absolutePath = path.resolve(url);
