@@ -4,12 +4,14 @@
   "description": "Your personal librarian.",
   "main": "./dist/main.js",
   "scripts": {
+    "clean": "rm -rf ./dist",
     "prettier": "npx prettier --write .",
     "eslint": "eslint --fix ./src ./webpack.*.js",
     "start": "electron .",
     "build:main": "cross-env NODE_ENV=development webpack --config webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack.main.js --mode development",
     "build:rend": "cross-env NODE_ENV=development webpack --config webpack.renderer.js --mode development",
-    "build": "rm -rf ./dist && cross-env NODE_ENV=development webpack --config webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack.main.js --mode development && cross-env NODE_ENV=development webpack --config webpack.renderer.js --mode development",
+    "build": "cross-env NODE_ENV=development webpack --config webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack.main.js --mode development && cross-env NODE_ENV=development webpack --config webpack.renderer.js --mode development",
+    "build:prod": "cross-env NODE_ENV=production webpack --config webpack.preload.js --mode production && cross-env NODE_ENV=production webpack --config webpack.main.js --mode production && cross-env NODE_ENV=production webpack --config webpack.renderer.js --mode production",
     "main": "cross-env NODE_ENV=development webpack --config webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack.main.js --mode development && electron .",
     "rend": "cross-env NODE_ENV=development webpack-dev-server --config webpack.renderer.js --mode development"
   },

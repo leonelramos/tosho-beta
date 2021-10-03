@@ -11,8 +11,25 @@ function createWindow() {
       nodeIntegration: true,
       contextIsolation: false,
       preload: path.join(__dirname, 'preload.js'),
+      nativeWindowOpen: true,
+      nodeIntegrationInSubFrames: true
     },
   });
+
+  // window.webContents.setWindowOpenHandler(() => {
+  //   return {
+  //     action: 'allow',
+  //     overrideBrowserWindowOptions: {
+  //       frame: true,
+  //       fullscreenable: true,
+  //       webPreferences: {
+  //         nodeIntegration: true,
+  //         contextIsolation: false,
+  //         preload: path.join(__dirname, 'renderPreload.js')
+  //       }
+  //     }
+  //   }
+  // })
 
   if (isDevelopment) {
     window.loadURL('http://localhost:8080');

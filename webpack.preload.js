@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   entry: {
     preload: path.join(__dirname, 'src', 'Electron', 'preload.js'),
+    renderPreload: path.join(__dirname, 'src', 'Electron', 'render-preload.js'),
   },
 
   output: {

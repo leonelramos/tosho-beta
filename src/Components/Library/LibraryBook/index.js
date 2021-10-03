@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Badge, Image } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
+import renderBook from '../../../Utils/book-renderer'
 
 export default function LibraryBook(props) {
   const book = props.book;
@@ -9,7 +10,7 @@ export default function LibraryBook(props) {
   return (
     <Card className="LibraryBook">
       {console.log(book.artUrl)}
-      <Image src={book.artUrl} />
+      <Image onClick={() => { renderBook(book.url) }} src={book.artUrl} />
 
       {details.enable && (
         <Details>

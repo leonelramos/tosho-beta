@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import path from 'path'
 import { Flex, Box } from '@chakra-ui/layout';
 import LibraryBook from './LibraryBook';
-import { getBooksAsync } from '../../Utils/bookcreator';
+import { getBooksAsync } from '../../Utils/book-creator';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const testBooksUrl = isDevelopment
   ? './testing-books'
-  : new URL('../../../testing-books/Dracula.epub', import.meta.url).href;
+  : path.resolve(__dirname, "..", "..", "testing-books")
+
+  console.log(testBooksUrl)
 
 export default function Library(props) {
   const [books, setBooks] = useState([]);
