@@ -13,6 +13,12 @@ module.exports = {
 
   target: ['electron-preload'],
 
+  resolve: {
+    alias: {
+      EpubAlias$: path.resolve(__dirname, 'externals', 'builds', 'epub.js'),
+    }
+  },
+
   module: {
     rules: [
       {

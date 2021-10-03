@@ -14,6 +14,13 @@ module.exports = {
 
   target: 'electron-renderer',
 
+  resolve: {
+    alias: {
+      EpubAlias$: path.resolve(__dirname, 'externals', 'builds', 'epub.js'),
+      DefaultBooksAlias$: path.resolve(__dirname, 'testing-books')
+    }
+  },
+
   module: {
     rules: [
       {
