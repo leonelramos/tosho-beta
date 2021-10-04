@@ -1,39 +1,34 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpackCommon = require('./webpack.common')
 
 module.exports = {
   entry: {
-    renderer: path.join(__dirname, 'src', 'Electron', 'renderer.js'),
+    renderer: path.resolve(__dirname, 'src', 'Electron', 'renderer.tsx'),
   },
 
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, 'dist', 'renderer'),
+    path: path.resolve(__dirname, 'dist', 'renderer'),
     assetModuleFilename: '[name].[hash][ext]',
   },
 
   target: 'electron-renderer',
 
+  resolve: {
+    extensions: webpackCommon.resolve.extensions,
+    alias: webpackCommon.resolve.alias
+  },
+
   module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
-      {
-        test: [/\.(epub|png|svg|jpe?g|gif)$/],
-        exclude: /node_modules/,
-        type: 'asset',
-      },
-    ],
+    rules: webpackCommon.module.rules
   },
 
   devtool: 'source-map',
 
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist', 'renderer'),
+      directory: path.resolve(__dirname, 'dist', 'renderer'),
     },
     port: 8080,
     hot: false,
@@ -42,7 +37,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html'),
-    }),
+      template: path.resolve(__dirname, 'src', 'index.html'),
+    })
   ],
 };

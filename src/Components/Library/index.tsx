@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { Flex, Box } from '@chakra-ui/layout';
+import path from 'path'
+import { Flex } from '@chakra-ui/layout';
 import LibraryBook from './LibraryBook';
-import { getBooksAsync } from '../../Utils/bookcreator';
+import { getBooksAsync } from 'BookCreatorAlias';
+import { BookModel } from 'src/Models/BookModel';
+import CommonProps from 'CommonPropsAlias';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const testBooksUrl = isDevelopment
   ? './testing-books'
-  : new URL('../../../testing-books/Dracula.epub', import.meta.url).href;
+  : path.resolve(__dirname, "..", "..", "testing-books");
 
-export default function Library(props) {
-  const [books, setBooks] = useState([]);
+  console.log(testBooksUrl);
 
-  useEffect(async () => {
+
+interface LibraryProps extends CommonProps {
+
+}
+
+export default function Library(props: LibraryProps) {
+  const [books, setBooks] = useState<BookModel[]>([]);
+
+  useEffect(() => {
     getBooksAsync(testBooksUrl).then((books) => {
-      setBooks(books);
+      if(books) {
+        setBooks(books);
+      }
     });
   }, []);
 
@@ -27,7 +39,7 @@ export default function Library(props) {
   return (
     <LibraryContainer>
       {
-        books.map((book, key) => {
+        books.map((book: BookModel, key: number) => {
           return <LibraryBook key={key} book={book} details={testDetails}/>
         })
       }
@@ -35,7 +47,7 @@ export default function Library(props) {
   );
 }
 
-function LibraryContainer(props) {
+function LibraryContainer(props: CommonProps) {
   return (
     <>
       <Flex

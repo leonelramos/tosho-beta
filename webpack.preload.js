@@ -1,27 +1,26 @@
 const path = require('path');
+const webpackCommon = require('./webpack.common');
 
 module.exports = {
   entry: {
-    preload: path.join(__dirname, 'src', 'Electron', 'preload.js'),
+    preload: path.resolve(__dirname, 'src', 'Electron', 'preload.ts'),
+    renderPreload: path.resolve(__dirname, 'src', 'Electron', 'render-preload.ts'),
   },
 
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
   },
 
   target: ['electron-preload'],
 
+  resolve: {
+    extensions: webpackCommon.resolve.extensions,
+    alias: webpackCommon.resolve.alias
+  },
+
   module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-    ],
+    rules: webpackCommon.module.rules
   },
 
   devtool: 'source-map',

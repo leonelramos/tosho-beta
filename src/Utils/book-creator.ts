@@ -1,10 +1,9 @@
 import { readdir } from 'fs/promises';
 import path from 'path';
-import epub from '../../externals/builds/epub'
 import { BookModel } from '../Models/BookModel';
-import supportedFileTypes from '../Shared/supportedfiletypes';
+import supportedFileTypes from '../Shared/supported-file-types';
 
-export async function getBooksAsync(url) {
+export function getBooksAsync(url: string) {
   const absolutePath = path.resolve(url);
 
   console.log(`Getting books from ${absolutePath}`);
@@ -22,9 +21,9 @@ export async function getBooksAsync(url) {
     );
 }
 
-async function createBooksAsync(absolutePath, files) {
+async function createBooksAsync(absolutePath: string, files: string[]) {
   const dir = path.resolve(absolutePath);
-  const books = [];
+  const books: BookModel[] = [];
 
   files.forEach((file) => {
     const filepath = path.join(dir, file);
