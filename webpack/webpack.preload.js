@@ -3,13 +3,13 @@ const webpackCommon = require('./webpack.common');
 
 module.exports = {
   entry: {
-    preload: path.resolve(__dirname, 'src', 'Electron', 'preload.ts'),
-    renderPreload: path.resolve(__dirname, 'src', 'Electron', 'render-preload.ts'),
+    preload: path.resolve(__dirname, '..', 'src', 'Electron', 'preload'),
+    bookRenderPreload: path.resolve(__dirname, '..', 'src', 'Electron', 'book-render-preload'),
   },
 
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: webpackCommon.output.path,
   },
 
   target: ['electron-preload'],

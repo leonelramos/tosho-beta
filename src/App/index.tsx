@@ -3,11 +3,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import Menu from '../Components/Menu';
 import Library from '../Components/Library';
 
-interface props {
-  children?: Element
-}
-
-export default function App(props: props) {
+export default function App() {
   return (
     <ChakraProvider>
       <Menu />

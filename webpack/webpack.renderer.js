@@ -1,15 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpackCommon = require('./webpack.common')
+const webpackCommon = require('./webpack.common');
 
 module.exports = {
   entry: {
-    renderer: path.resolve(__dirname, 'src', 'Electron', 'renderer.tsx'),
+    renderer: path.resolve(__dirname, '..', 'src', 'Electron', 'renderer'),
   },
 
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist', 'renderer'),
+    path: path.resolve(webpackCommon.output.path, 'renderer'),
     assetModuleFilename: '[name].[hash][ext]',
   },
 
@@ -28,7 +28,7 @@ module.exports = {
 
   devServer: {
     static: {
-      directory: path.resolve(__dirname, 'dist', 'renderer'),
+      directory: path.resolve(webpackCommon.output.path, 'renderer'),
     },
     port: 8080,
     hot: false,
@@ -37,7 +37,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html'),
+      template: path.resolve(__dirname, '..', 'src', 'index'),
     })
   ],
 };

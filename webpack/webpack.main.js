@@ -3,12 +3,12 @@ const webpackCommon = require('./webpack.common')
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, 'src', 'Electron', 'main.ts'),
+    main: path.resolve(__dirname, '..', 'src', 'Electron', 'main'),
   },
 
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: webpackCommon.output.path,
   },
 
   target: ['electron-main'],
