@@ -5,9 +5,8 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist'),
   },
   resolve: {
-    extensions: [".tsx", ".ts",".jsx", ".js", ".json", ".html", ".css", ".scss",".wasm"],
+    extensions: ['.tsx', '.ts','.jsx', '.js', '.json', '.html', '.css', '.scss','.wasm'],
     alias: {
-      EpubAlias$: path.resolve(__dirname, '..', 'externals', 'builds', 'epub'),
       DefaultBooksAlias$: path.resolve(__dirname, '..', 'testing-books'),
       BookRendererAlias$: path.resolve(__dirname, '..', 'src', 'Utils', 'book-renderer'),
       BookCreatorAlias$: path.resolve(__dirname, '..', 'src', 'Utils', 'book-creator'),

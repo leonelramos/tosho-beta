@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import path from 'path'
 import { Flex } from '@chakra-ui/layout';
 import LibraryBook from './LibraryBook';
 import { getBooksAsync } from 'BookCreatorAlias';
 import { BookModel } from 'src/Models/BookModel';
 import CommonProps from 'CommonPropsAlias';
 
-const isDevelopment = process.env.NODE_ENV === 'development';
-
-const testBooksUrl = isDevelopment
+const rendererPath = window['pathApi'].rendererPath;
+const testBooksUrl = window['envApi'].isDevelopment
   ? './testing-books'
-  : path.resolve(__dirname, "..", "..", "testing-books");
+  : window['pathApi'].resolve(rendererPath, '..', '..', 'testing-books');
 
-  console.log(testBooksUrl);
+console.log("rendererPath URL - " + rendererPath);
+console.log("TestBook URL - " + testBooksUrl);
 
 
-interface LibraryProps extends CommonProps {
-
-}
+type LibraryProps = CommonProps
 
 export default function Library(props: LibraryProps) {
   const [books, setBooks] = useState<BookModel[]>([]);
 
   useEffect(() => {
-    getBooksAsync(testBooksUrl).then((books) => {
+    window['bookApi'].getBooks(testBooksUrl)
+    .then((books: BookModel[]) => {
       if(books) {
         setBooks(books);
       }

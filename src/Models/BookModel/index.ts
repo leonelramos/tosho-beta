@@ -1,8 +1,8 @@
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-let defaultArtUrl = new URL("../../Assets/Img/defaultcover.jpg", import.meta.url);
+const defaultArtUrl = new URL('../../Assets/Img/defaultcover.jpg', import.meta.url);
 
-let defaultArtPath = isDevelopment ? defaultArtUrl.pathname : defaultArtUrl.href;
+const defaultArtPath = isDevelopment ? defaultArtUrl.pathname : defaultArtUrl.href;
 
 export class BookModel {
   url: string;

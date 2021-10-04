@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Badge, Image } from '@chakra-ui/react';
-import renderBook from 'BookRendererAlias';
 import { BookModel } from 'src/Models/BookModel';
 import CommonProps from 'CommonPropsAlias';
 
@@ -13,13 +12,20 @@ export interface BookProps extends CommonProps{
   }
 }
 
+function render(url: string) {
+  const newWindow = window.open(); 
+  if(newWindow !== null) {
+    newWindow['bookApi'].render(url); 
+  }  
+}
+
 export default function LibraryBook(props: BookProps) {
   const book = props.book;
   const details = props.details;
 
   return (
     <Card>
-      <Image onClick={() => { renderBook(book.url) }} src={book.artUrl} />
+      <Image onClick={() => { render(book.url) }} src={book.artUrl} />
       {details.enable && (
         <Details>
           <Status status={details.status} progress={details.progress} />

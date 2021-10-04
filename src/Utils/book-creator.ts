@@ -14,11 +14,12 @@ export function getBooksAsync(url: string) {
       console.log(`Final book list: ${books}`);
       return books;
     })
-    .catch((err) =>
+    .catch((err) => {
       console.log(
         `Error when trying to read from directory ${absolutePath} - ${err}`
-      )
-    );
+      );
+      return [] as BookModel[];
+    });
 }
 
 async function createBooksAsync(absolutePath: string, files: string[]) {
