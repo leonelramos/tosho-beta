@@ -1,4 +1,4 @@
-# Tosho
+# Tosho :book:
 
 Modern, minimalist design, cross-platform file manager with a focus on ebook organizing.
 
