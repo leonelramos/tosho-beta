@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Badge, Image } from '@chakra-ui/react';
-import { StarIcon } from '@chakra-ui/icons';
-import renderBook from '../../../Utils/book-renderer'
+import renderBook from 'BookRendererAlias';
+import { BookModel } from 'src/Models/BookModel';
+import CommonProps from 'CommonPropsAlias';
 
-export default function LibraryBook(props) {
+export interface BookProps extends CommonProps{
+  book: BookModel,
+  details: {
+    enable: boolean,
+    status: string,
+    progress: number
+  }
+}
+
+export default function LibraryBook(props: BookProps) {
   const book = props.book;
   const details = props.details;
-  
-  return (
-    <Card className="LibraryBook">
-      {console.log(book.artUrl)}
-      <Image onClick={() => { renderBook(book.url) }} src={book.artUrl} />
 
+  return (
+    <Card>
+      <Image onClick={() => { renderBook(book.url) }} src={book.artUrl} />
       {details.enable && (
         <Details>
-          {/* <Status status={details.status} progress={details.progress} /> */}
+          <Status status={details.status} progress={details.progress} />
           <Info title={book.title} author={book.author} />
         </Details>
       )}
@@ -22,7 +30,7 @@ export default function LibraryBook(props) {
   );
 }
 
-function Card(props) {
+function Card(props: CommonProps) {
   const styles = {
     mb: '15px',
     maxW: '20vmax',
@@ -30,18 +38,23 @@ function Card(props) {
     borderRadius: 'sm',
     overflow: 'hidden',
   };
-  return <Box {...styles}>{props.children}</Box>;
+  return <Box className="LibraryBook" { ...styles }>{ props.children }</Box>;
 }
 
-function Details(props) {
-  return <Box p="2">{props.children}</Box>;
+function Details(props: CommonProps) {
+  return <Box p="2">{ props.children }</Box>;
 }
 
-function Status(props) {
+interface StatusProps extends CommonProps {
+  status?: string,
+  progress?: number
+}
+
+function Status(props: StatusProps) {
   return (
     <Box d="flex" alignItems="baseline">
       <Badge borderRadius="full" px="2" colorScheme="teal">
-        Reading
+        {props.status}
       </Badge>
       <Box
         color="gray.500"
@@ -57,7 +70,12 @@ function Status(props) {
   );
 }
 
-function Info(props) {
+interface InfoProps extends CommonProps {
+  title?: string,
+  author?: string
+}
+
+function Info(props: InfoProps) {
   return (
     <>
       <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
@@ -66,23 +84,5 @@ function Info(props) {
 
       <Box> {props.author} </Box>
     </>
-  );
-}
-
-function Ratings(props) {
-  return (
-    <Box d="flex" mt="2" alignItems="center">
-      {Array(5)
-        .fill('')
-        .map((_, i) => (
-          <StarIcon
-            key={i}
-            color={i < props.rating ? 'teal.500' : 'gray.300'}
-          />
-        ))}
-      <Box as="span" ml="2" color="gray.600" fontSize="sm">
-        {props.reviewCount} reviews
-      </Box>
-    </Box>
   );
 }
