@@ -12,7 +12,7 @@ Tosho aims to solve the void of cross-platform ebook readers that can handle all
 
 ### Goals For The Week Of 10/3 - 10/9
 
-[ :heavy_check_mark: ] Dynamically Render book books from a directory into the main view. <br>
+[ :heavy_check_mark: ] Dynamically render, cover art, book links from a system directory into the main view. <br>
 [ :heavy_check_mark: ] Migrate to typescript. <br>
 [ :heavy_check_mark: ] Add epub support. <br>
 [ :hourglass_flowing_sand: ] Refactor to disable nodeIntegration and enable contextIsolation. <br>
