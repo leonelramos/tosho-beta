@@ -6,8 +6,8 @@ Tosho aims to solve the void of cross-platform ebook readers that can handle all
 
 ### Goals for the week of 10/3 - 10/9
 [ DONE ] Add functionality to Render book cover w/links from a directory into the main UI
-[ IP ] Convert to typescript project
+[ DONE ] Migrate to typescript project
 [ IP ] Refactor to disallow unsafe features nodeIntegration and no contextIsolation
-[ IP ] Add epub support <br>
-[ ] Add a burger menu <br>
-[ ] Add "Add Books" functionality
+[ MOSTLY DONE ] Add epub support <br>
+[ - ] Add a burger menu <br>
+[ - ] Add "Add Books" functionality
