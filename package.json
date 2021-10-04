@@ -8,12 +8,12 @@
     "prettier": "npx prettier --write .",
     "eslint": "eslint --fix ./src ./webpack.*.js",
     "start": "electron .",
-    "build:main": "cross-env NODE_ENV=development webpack --config webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack.main.js --mode development",
-    "build:rend": "cross-env NODE_ENV=development webpack --config webpack.renderer.js --mode development",
-    "build": "cross-env NODE_ENV=development webpack --config webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack.main.js --mode development && cross-env NODE_ENV=development webpack --config webpack.renderer.js --mode development",
-    "build:prod": "cross-env NODE_ENV=production webpack --config webpack.preload.js --mode production && cross-env NODE_ENV=production webpack --config webpack.main.js --mode production && cross-env NODE_ENV=production webpack --config webpack.renderer.js --mode production",
-    "main": "cross-env NODE_ENV=development webpack --config webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack.main.js --mode development && electron .",
-    "rend": "cross-env NODE_ENV=development webpack-dev-server --config webpack.renderer.js --mode development"
+    "build:main": "cross-env NODE_ENV=development webpack --config webpack/webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack/webpack.main.js --mode development",
+    "build:rend": "cross-env NODE_ENV=development webpack --config webpack/webpack.renderer.js --mode development",
+    "build": "cross-env NODE_ENV=development webpack --config webpack/webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack/webpack.main.js --mode development && cross-env NODE_ENV=development webpack --config webpack/webpack.renderer.js --mode development",
+    "build:test": "cross-env NODE_ENV=production webpack --config webpack/webpack.preload.js --mode production && cross-env NODE_ENV=production webpack --config webpack/webpack.main.js --mode production && cross-env NODE_ENV=production webpack --config webpack/webpack.renderer.js --mode production",
+    "main": "cross-env NODE_ENV=development webpack --config webpack/webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack/webpack.main.js --mode development && electron .",
+    "rend": "cross-env NODE_ENV=development webpack-dev-server --config webpack/webpack.renderer.js --mode development"
   },
   "keywords": [
     "library",
@@ -54,7 +54,6 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "2.4.1",
     "typescript": "^4.4.3",
     "webpack": "^5.55.0",
     "webpack-cli": "^4.8.0",
