@@ -10,10 +10,6 @@ const testBooksUrl = window['envApi'].isDevelopment
   ? './testing-books'
   : window['pathApi'].resolve(rendererPath, '..', '..', 'testing-books');
 
-console.log("rendererPath URL - " + rendererPath);
-console.log("TestBook URL - " + testBooksUrl);
-
-
 type LibraryProps = CommonProps
 
 export default function Library(props: LibraryProps) {
@@ -21,11 +17,12 @@ export default function Library(props: LibraryProps) {
 
   useEffect(() => {
     window['bookApi'].getBooks(testBooksUrl)
-    .then((books: BookModel[]) => {
-      if(books) {
-        setBooks(books);
+    .then((foundBooks: BookModel[]) => { 
+      if(foundBooks) {
+        setBooks(foundBooks);
       }
-    });
+    })
+    .catch((err: Error) => console.log(`Error getting your books! ${err}`));
   }, []);
 
   const testDetails = {
