@@ -6,11 +6,6 @@ import { getBooksAsync } from 'BookCreatorAlias';
 import { BookModel } from 'src/Models/BookModel';
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (isDevelopment) {
-    console.log(`In Development: ${isDevelopment}`);
-  }
-  console.log('Loaded Preload...');
-
   const renderAreaId = 'book-render-area';
   const renderArea = document.createElement('div');
   renderArea.id = renderAreaId;
