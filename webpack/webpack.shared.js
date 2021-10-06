@@ -6,7 +6,7 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist'),
   },
   resolve: {
-    extensions: ['.tsx', '.ts','.jsx', '.js', '.json', '.html', '.css', '.scss','.wasm'],
+    extensions: ['.tsx', '.ts','.jsx', '.js', '.json', '.html', '.css', '.scss','.wasm', '.jpg'],
     plugins: [new TsconfigPathsPlugin()],
   },
   module: {
@@ -17,9 +17,9 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
-        test: [/\.[epub|png|svg|jpe?g|gif]$/],
+        test: [/\.(png|svg|jpe?g|gif)$/],
         exclude: /node_modules/,
-        type: 'asset',
+        type: 'asset/resource',
       },
     ],
   },

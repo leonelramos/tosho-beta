@@ -1,13 +1,14 @@
-import { readdir } from 'fs/promises';
 import path from 'path';
-import { BookModel } from '@/shared/models/BookModel';
+import Epub, { Book } from 'epubjs';
+import { readdir } from 'fs/promises';
 import supportedFileTypes from '@/shared/scripts/supported-file-types';
+import { BookModel } from '@/shared/models/BookModel';
+import defaultCoverUrl from '@/assets/img/defaultcover.jpg';
+import { reject } from 'lodash';
 
 export async function getBooksAsync(url: string) {
-  const absolutePath = path.resolve(url);
-
-  const files = await readdir(absolutePath);
-  const books = await createBooksAsync(absolutePath, files);
+  const files = await readdir(url);
+  const books = await createBooksAsync(url, files);
   return books;
 }
 
@@ -26,11 +27,37 @@ async function createBooksAsync(absolutePath: string, files: string[]) {
 async function createBookAsync(url: string): Promise<BookModel> {
   return new Promise((resolve) => {
     const book = createBook(url);
-    resolve(book);
+    if (book)
+      resolve(book);
+    else
+      reject(book)
   });
 }
 
-function createBook(url: string) {
-  const book = new BookModel(url);
-  return book;
+async function createBook(url: string) {
+  const book = Epub(url);
+  console.log(book);
+
+  let id = "unavailable";
+  let title = "unavailable";
+  let author = "unavailable";
+  let description = "unavailable"
+  let coverUrl = "../" + defaultCoverUrl;
+  console.log(coverUrl);
+
+  let bookModel: BookModel | null;
+
+  const ready = await book.ready;
+  const details = ready[2];
+
+  console.log(book.packaging.metadata);
+  console.log(details);
+
+  id = details.identifier;
+  title = details.title;
+  author = details.creator;
+  description = details.description;
+
+  bookModel = new BookModel(id, url, title, author, description, coverUrl);
+  return bookModel;
 }

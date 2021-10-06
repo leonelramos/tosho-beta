@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Flex } from '@chakra-ui/layout';
 import LibraryBook from '@/renderer/components/LibraryBook';
-import { getBooksAsync } from '@/preload/scripts/book-creator';
 import { BookModel } from '@/shared/models/BookModel';
 import CommonProps from '@/renderer/scripts/common-props';
 
 const rendererPath = window['pathApi'].rendererPath;
-const testBooksUrl = window['envApi'].isDevelopment
-  ? './testing-books'
+const libraryUrl = window['envApi'].isDevelopment
+  ? '../library'
   : window['pathApi'].resolve(rendererPath, '..', '..', 'library');
 
 type LibraryProps = CommonProps
@@ -16,7 +15,7 @@ export default function Library(props: LibraryProps) {
   const [books, setBooks] = useState<BookModel[]>([]);
 
   useEffect(() => {
-    window['bookApi'].getBooks(testBooksUrl)
+    window['bookApi'].getBooks(libraryUrl)
     .then((foundBooks: BookModel[]) => { 
       if(foundBooks) {
         setBooks(foundBooks);
@@ -27,8 +26,8 @@ export default function Library(props: LibraryProps) {
 
   const testDetails = {
     enable: true,
-    status: 'READING',
-    progress: 65,
+    status: 'UNREAD',
+    progress: 0,
   };
 
   return (

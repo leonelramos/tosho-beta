@@ -1,21 +1,20 @@
 import { isDevelopment } from '@/shared/scripts/environment-variables'
-
-const defaultArtUrl = new URL('../../../assets/img/defaultcover.jpg', import.meta.url);
-
 console.log(import.meta)
 
-const defaultArtPath = isDevelopment ? defaultArtUrl.pathname : defaultArtUrl.href;
-
 export class BookModel {
+  identifier: string;
   url: string;
   title: string;
   author: string;
-  artUrl: string;
+  description: string;
+  coverUrl: string;
 
-  constructor(url: string, title = 'unknown', author = 'unknown', artUrl = defaultArtPath) {
+  constructor(identifier: string, url: string, title: string, author: string, description: string, coverUrl: string) {
+    this.identifier = identifier;
     this.url = url;
     this.title = title;
     this.author = author;
-    this.artUrl = isDevelopment ? defaultArtPath : artUrl;
+    this.description = description;
+    this.coverUrl = coverUrl;
   }
 }

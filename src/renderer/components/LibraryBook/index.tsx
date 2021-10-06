@@ -25,7 +25,7 @@ export default function LibraryBook(props: BookProps) {
 
   return (
     <Card>
-      <Image onClick={() => { render(book.url) }} src={book.artUrl} />
+      <Image onClick={() => { render(book.url) }} src={book.coverUrl} />
       {details.enable && (
         <Details>
           <Status status={details.status} progress={details.progress} />
