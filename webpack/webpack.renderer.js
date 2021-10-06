@@ -1,34 +1,34 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpackCommon = require('./webpack.common');
+const webpackShared = require('./webpack.shared');
 
 module.exports = {
   entry: {
-    renderer: path.resolve(__dirname, '..', 'src', 'Electron', 'renderer'),
+    index: path.resolve(__dirname, '..', 'src', 'renderer', 'index'),
   },
 
   output: {
     filename: '[name].js',
-    path: path.resolve(webpackCommon.output.path, 'renderer'),
+    path: path.resolve(webpackShared.output.path, 'renderer'),
     assetModuleFilename: '[name].[hash][ext]',
   },
 
   target: 'electron-renderer',
 
   resolve: {
-    extensions: webpackCommon.resolve.extensions,
-    alias: webpackCommon.resolve.alias
+    extensions: webpackShared.resolve.extensions,
+    alias: webpackShared.resolve.alias
   },
 
   module: {
-    rules: webpackCommon.module.rules
+    rules: webpackShared.module.rules
   },
 
   devtool: 'source-map',
 
   devServer: {
     static: {
-      directory: path.resolve(webpackCommon.output.path, 'renderer'),
+      directory: path.resolve(webpackShared.output.path, 'renderer'),
     },
     port: 8080,
     hot: false,
@@ -37,7 +37,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', 'src', 'index'),
+      template: path.resolve(__dirname, '..', 'src', 'renderer', 'templates', 'index'),
     })
   ],
 };

@@ -1,13 +1,14 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
-import { isDevelopment } from '../Shared/environment-variables';
+import { isDevelopment } from '../shared/scripts/environment-variables';
 
 function createWindow() {
   const window = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.resolve(__dirname, 'preload')
+      //nodeIntegrationInSubFrames: true,
+      preload: path.resolve(__dirname, 'appWinPreload')
     }
   });
 
@@ -15,10 +16,8 @@ function createWindow() {
     return {
       action: 'allow',
       overrideBrowserWindowOptions: {
-        frame: true,
-        fullscreenable: true,
         webPreferences: {
-          preload: path.resolve(__dirname, 'book-render-preload')
+          preload: path.resolve(__dirname, 'readerWinPreload')
         }
       }
     }

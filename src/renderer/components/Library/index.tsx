@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Flex } from '@chakra-ui/layout';
 import LibraryBook from './LibraryBook';
 import { getBooksAsync } from 'BookCreatorAlias';
-import { BookModel } from 'src/Models/BookModel';
+import { BookModel } from 'src/shared/models/BookModel';
 import CommonProps from 'CommonPropsAlias';
 
 const rendererPath = window['pathApi'].rendererPath;
 const testBooksUrl = window['envApi'].isDevelopment
   ? './testing-books'
-  : window['pathApi'].resolve(rendererPath, '..', '..', 'testing-books');
+  : window['pathApi'].resolve(rendererPath, '..', '..', 'library');
 
 type LibraryProps = CommonProps
 

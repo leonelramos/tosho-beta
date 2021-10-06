@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import Menu from '../Components/Menu';
-import Library from '../Components/Library';
+import Menu from '../components/Menu';
+import Library from '../components/Library';
 
 export default function App() {
   return (

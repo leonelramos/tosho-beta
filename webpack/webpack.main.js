@@ -1,24 +1,24 @@
 const path = require('path');
-const webpackCommon = require('./webpack.common')
+const webpackShared = require('./webpack.shared')
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, '..', 'src', 'Electron', 'main'),
+    main: path.resolve(__dirname, '..', 'src', 'main', 'main'),
   },
 
   output: {
     filename: '[name].js',
-    path: webpackCommon.output.path,
+    path: webpackShared.output.path,
   },
 
   target: ['electron-main'],
 
   resolve: {
-    extensions: webpackCommon.resolve.extensions
+    extensions: webpackShared.resolve.extensions
   },
 
   module: {
-    rules: webpackCommon.module.rules
+    rules: webpackShared.module.rules
   },
 
   devtool: 'source-map',

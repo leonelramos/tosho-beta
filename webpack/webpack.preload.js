@@ -1,26 +1,26 @@
 const path = require('path');
-const webpackCommon = require('./webpack.common');
+const webpackShared = require('./webpack.shared');
 
 module.exports = {
   entry: {
-    preload: path.resolve(__dirname, '..', 'src', 'Electron', 'preload'),
-    bookRenderPreload: path.resolve(__dirname, '..', 'src', 'Electron', 'book-render-preload'),
+    appWinPreload: path.resolve(__dirname, '..', 'src', 'preload', 'app-win-preload'),
+    readerWinPreload: path.resolve(__dirname, '..', 'src', 'preload', 'reader-win-preload'),
   },
 
   output: {
     filename: '[name].js',
-    path: webpackCommon.output.path,
+    path: webpackShared.output.path,
   },
 
   target: ['electron-preload'],
 
   resolve: {
-    extensions: webpackCommon.resolve.extensions,
-    alias: webpackCommon.resolve.alias
+    extensions: webpackShared.resolve.extensions,
+    alias: webpackShared.resolve.alias
   },
 
   module: {
-    rules: webpackCommon.module.rules
+    rules: webpackShared.module.rules
   },
 
   devtool: 'source-map',

@@ -8,9 +8,9 @@
     "baseUrl": "./",                                     /* Specify the base directory to resolve non-relative module names. */
     "paths": {  
       "DefaultBooksAlias": ["testing-books"],
-      "BookRendererAlias": ["src/Utils/book-renderer.ts"],
-      "BookCreatorAlias": ["src/Utils/book-creator.ts"],
-      "CommonPropsAlias": ["src/Shared/common-props"]
+      "BookRendererAlias": ["src/preload/scripts/book-renderer.ts"],
+      "BookCreatorAlias": ["src/preload/scripts/book-creator.ts"],
+      "CommonPropsAlias": ["src/renderer/scripts/common-props.tsx"]
     },                                                   /* Specify a set of entries that re-map imports to additional lookup locations. */
     "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */

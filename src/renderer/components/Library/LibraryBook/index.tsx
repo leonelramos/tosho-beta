@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Badge, Image } from '@chakra-ui/react';
-import { BookModel } from 'src/Models/BookModel';
+import { BookModel } from 'src/shared/models/BookModel';
 import CommonProps from 'CommonPropsAlias';
 
 export interface BookProps extends CommonProps{

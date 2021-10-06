@@ -1,6 +1,6 @@
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const defaultArtUrl = new URL('../../Assets/Img/defaultcover.jpg', import.meta.url);
+const defaultArtUrl = new URL('../../../assets/img/defaultcover.jpg', import.meta.url);
 
 const defaultArtPath = isDevelopment ? defaultArtUrl.pathname : defaultArtUrl.href;
 

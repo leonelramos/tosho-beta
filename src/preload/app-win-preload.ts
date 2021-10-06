@@ -1,11 +1,12 @@
 import { contextBridge } from 'electron';
 import path from 'path';
-import { isDevelopment } from '../Shared/environment-variables';
+import { isDevelopment } from '../shared/scripts/environment-variables';
 import renderBook from 'BookRendererAlias'
 import { getBooksAsync } from 'BookCreatorAlias';
-import { BookModel } from 'src/Models/BookModel';
+import { BookModel } from 'src/shared/models/BookModel';
 
 document.addEventListener('DOMContentLoaded', () => {
+  console.log("normal preload")
   const renderAreaId = 'book-render-area';
   const renderArea = document.createElement('div');
   renderArea.id = renderAreaId;
