@@ -23,7 +23,7 @@ function createWindow() {
     }
   })
 
-  if (isDevelopment) {
+  if (false) {
     window.loadURL('http://localhost:8080');
   } else {
     window.loadFile(path.resolve(__dirname, 'renderer', 'index.html'));

@@ -1,6 +1,7 @@
 import path from 'path';
+import JSZip from 'jszip';
 import Epub, { Book } from 'epubjs';
-import { readdir } from 'fs/promises';
+import fs, { readdir } from 'fs/promises';
 import supportedFileTypes from '@/shared/scripts/supported-file-types';
 import { BookModel } from '@/shared/models/BookModel';
 import defaultCoverUrl from '@/assets/img/defaultcover.jpg';
@@ -19,14 +20,14 @@ async function createBooksAsync(absolutePath: string, files: string[]) {
     const pathName = path.join(dir, file);
     const fileTypeSupported = supportedFileTypes.includes(path.extname(file));
     if (fileTypeSupported) {
-      return createBookAsync(pathName);
+      return createBookPromise(pathName);
     }
   }));
 }
 
-async function createBookAsync(url: string): Promise<BookModel> {
-  return new Promise((resolve) => {
-    const book = createBook(url);
+function createBookPromise(url: string): Promise<BookModel> {
+  return new Promise(async (resolve) => {
+    const book = await createBook(url);
     if (book)
       resolve(book);
     else
@@ -36,28 +37,39 @@ async function createBookAsync(url: string): Promise<BookModel> {
 
 async function createBook(url: string) {
   const book = Epub(url);
-  console.log(book);
 
   let id = "unavailable";
   let title = "unavailable";
   let author = "unavailable";
   let description = "unavailable"
   let coverUrl = "../" + defaultCoverUrl;
-  console.log(coverUrl);
 
   let bookModel: BookModel | null;
 
   const ready = await book.ready;
   const details = ready[2];
 
-  console.log(book.packaging.metadata);
-  console.log(details);
-
   id = details.identifier;
   title = details.title;
   author = details.creator;
   description = details.description;
-
+  coverUrl = await getCoverUrl(url, (ready[3] as string).substring(1));
   bookModel = new BookModel(id, url, title, author, description, coverUrl);
   return bookModel;
+}
+
+var cachedCoverImages: HTMLImageElement[] = []
+
+async function getCoverUrl(url: string, coverRelativeUrl: string) {
+  const zip = new JSZip();
+  const data = await fs.readFile(url);
+  console.log(data);
+  const result = await zip.loadAsync(data);
+
+  const blob = await result.files[coverRelativeUrl.trim()].async('blob'); //failing here at the moment, async undefined for some reason
+
+  const img = new Image();
+  img.src = URL.createObjectURL(blob);
+  cachedCoverImages.push(img);
+  return img.src;
 }

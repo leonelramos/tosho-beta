@@ -26,14 +26,14 @@ module.exports = {
 
   devtool: 'source-map',
 
-  devServer: {
-    static: {
-      directory: path.resolve(webpackShared.output.path, 'renderer'),
-    },
-    port: 8080,
-    hot: false,
-    liveReload: true,
-  },
+  // devServer: {
+  //   static: {
+  //     directory: path.resolve(webpackShared.output.path, 'renderer'),
+  //   },
+  //   port: 8080,
+  //   hot: false,
+  //   liveReload: true,
+  // },
 
   plugins: [
     new HtmlWebpackPlugin({
