@@ -1,6 +1,5 @@
 import epub from 'epubjs'
 import { RenditionOptions } from 'epubjs/types/rendition';
-
 // TODO: Move book creation to own function
 
 export default function (url: string) {

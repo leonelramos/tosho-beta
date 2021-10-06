@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
-import { isDevelopment } from '../shared/scripts/environment-variables';
+import { isDevelopment } from '@/shared/scripts/environment-variables';
 
 function createWindow() {
   const window = new BrowserWindow({

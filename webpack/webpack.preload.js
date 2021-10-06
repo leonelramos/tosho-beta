@@ -16,7 +16,7 @@ module.exports = {
 
   resolve: {
     extensions: webpackShared.resolve.extensions,
-    alias: webpackShared.resolve.alias
+    plugins: webpackShared.resolve.plugins
   },
 
   module: {

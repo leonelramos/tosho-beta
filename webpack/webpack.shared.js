@@ -1,4 +1,5 @@
 const path = require('path');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   output: {
@@ -6,12 +7,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts','.jsx', '.js', '.json', '.html', '.css', '.scss','.wasm'],
-    alias: {
-      DefaultBooksAlias$: path.resolve(__dirname, '..', 'testing-books'),
-      BookRendererAlias$: path.resolve(__dirname, '..', 'src', 'preload', 'scripts', 'book-renderer'),
-      BookCreatorAlias$: path.resolve(__dirname, '..', 'src', 'preload', 'scripts', 'book-creator'),
-      CommonPropsAlias$: path.resolve(__dirname, '..', 'src', 'renderer', 'scripts', 'common-props')
-    }
+    plugins: [new TsconfigPathsPlugin()],
   },
   module: {
     rules: [

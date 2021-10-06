@@ -1,8 +1,7 @@
 import { readdir } from 'fs/promises';
-import { random, reject } from 'lodash';
 import path from 'path';
-import { BookModel } from '../../shared/models/BookModel';
-import supportedFileTypes from '../../shared/scripts/supported-file-types';
+import { BookModel } from '@/shared/models/BookModel';
+import supportedFileTypes from '@/shared/scripts/supported-file-types';
 
 export async function getBooksAsync(url: string) {
   const absolutePath = path.resolve(url);

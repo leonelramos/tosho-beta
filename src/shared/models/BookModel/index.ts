@@ -1,6 +1,8 @@
-const isDevelopment = process.env.NODE_ENV === 'development';
+import { isDevelopment } from '@/shared/scripts/environment-variables'
 
 const defaultArtUrl = new URL('../../../assets/img/defaultcover.jpg', import.meta.url);
+
+console.log(import.meta)
 
 const defaultArtPath = isDevelopment ? defaultArtUrl.pathname : defaultArtUrl.href;
 

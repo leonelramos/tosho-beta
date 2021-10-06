@@ -1,9 +1,9 @@
 import { contextBridge } from 'electron';
 import path from 'path';
-import { isDevelopment } from '../shared/scripts/environment-variables';
-import renderBook from 'BookRendererAlias'
-import { getBooksAsync } from 'BookCreatorAlias';
-import { BookModel } from 'src/shared/models/BookModel';
+import { isDevelopment } from '@/shared/scripts/environment-variables';
+import renderBook from '@/preload/scripts/book-renderer'
+import { getBooksAsync } from '@/preload/scripts/book-creator';
+import { BookModel } from '@/shared/models/BookModel';
 
 window.onload = init;
 

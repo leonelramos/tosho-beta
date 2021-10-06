@@ -14,7 +14,8 @@ module.exports = {
   target: ['electron-main'],
 
   resolve: {
-    extensions: webpackShared.resolve.extensions
+    extensions: webpackShared.resolve.extensions,
+    plugins: webpackShared.resolve.plugins
   },
 
   module: {

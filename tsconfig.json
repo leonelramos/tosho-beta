@@ -5,12 +5,9 @@
     "module": "esnext",                                  /* Specify what module code is generated. */
     "rootDir": "./src",                                  /* Specify the root folder within your source files. */
     "moduleResolution": "node",                          /* Specify how TypeScript looks up a file from a given module specifier. */
-    "baseUrl": "./",                                     /* Specify the base directory to resolve non-relative module names. */
-    "paths": {  
-      "DefaultBooksAlias": ["testing-books"],
-      "BookRendererAlias": ["src/preload/scripts/book-renderer.ts"],
-      "BookCreatorAlias": ["src/preload/scripts/book-creator.ts"],
-      "CommonPropsAlias": ["src/renderer/scripts/common-props.tsx"]
+    "baseUrl": "./src",                                     /* Specify the base directory to resolve non-relative module names. */
+    "paths": {
+      "@/*": ["*"]
     },                                                   /* Specify a set of entries that re-map imports to additional lookup locations. */
     "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */

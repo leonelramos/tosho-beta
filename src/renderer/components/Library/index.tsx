@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Flex } from '@chakra-ui/layout';
-import LibraryBook from './LibraryBook';
-import { getBooksAsync } from 'BookCreatorAlias';
-import { BookModel } from 'src/shared/models/BookModel';
-import CommonProps from 'CommonPropsAlias';
+import LibraryBook from '@/renderer/components/LibraryBook';
+import { getBooksAsync } from '@/preload/scripts/book-creator';
+import { BookModel } from '@/shared/models/BookModel';
+import CommonProps from '@/renderer/scripts/common-props';
 
 const rendererPath = window['pathApi'].rendererPath;
 const testBooksUrl = window['envApi'].isDevelopment
