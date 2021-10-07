@@ -7,34 +7,34 @@ import { getBooksAsync } from '@/preload/scripts/book/library-loader';
 window.onload = init;
 
 function init() {
-  console.log("app preload")
-  const renderAreaId = 'book-render-area';
-  const renderArea = document.createElement('div');
-  renderArea.id = renderAreaId;
-  document.body.appendChild(renderArea);
+	console.log("app preload")
+	const renderAreaId = 'book-render-area';
+	const renderArea = document.createElement('div');
+	renderArea.id = renderAreaId;
+	document.body.appendChild(renderArea);
 };
 
 contextBridge.exposeInMainWorld('pathApi', {
-  resolve(url: string, ...pathArgs: string[]) {
-    return path.resolve(url, ...pathArgs);
-  },
-  join(url: string, ...pathArgs: string[]) {
-    return path.join(url, ...pathArgs);
-  },
-  rendererPath: path.resolve(__dirname, 'renderer')
+	resolve(url: string, ...pathArgs: string[]) {
+		return path.resolve(url, ...pathArgs);
+	},
+	join(url: string, ...pathArgs: string[]) {
+		return path.join(url, ...pathArgs);
+	},
+	rendererPath: path.resolve(__dirname, 'renderer')
 });
 
 contextBridge.exposeInMainWorld('envApi', {
-  isDevelopment: isDevelopment
+	isDevelopment: isDevelopment
 });
 
 contextBridge.exposeInMainWorld('bookApi', {
-  render(url: string) {
-    renderBook(url);
-  },
-  async getLibrary(url: string) {
-    return await getBooksAsync(url);
-  }
+	render(url: string) {
+		renderBook(url);
+	},
+	async getLibrary(url: string) {
+		return await getBooksAsync(url);
+	}
 })
 
 

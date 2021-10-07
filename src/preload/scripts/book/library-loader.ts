@@ -6,39 +6,39 @@ import { FileTypes } from '@/preload/scripts/book/file-types-enum';
 import { EpubCreator } from '@/preload/scripts/book/creators/epub-creator';
 
 export async function getBooksAsync(url: string): Promise<BookModel[]> {
-  const files = await readdir(url);
-  return await createBooksAsync(url, files);
+	const files = await readdir(url);
+	return await createBooksAsync(url, files);
 }
 
 async function createBooksAsync(absolutePath: string, files: string[]): Promise<BookModel[]> {
-  const supportedFiles = files.filter(file => {
-    const ext = path.extname(file);
-    const fileTypeSupported = supportedFileTypes.includes(ext);
-    return fileTypeSupported;
-  });
+	const supportedFiles = files.filter(file => {
+		const ext = path.extname(file);
+		const fileTypeSupported = supportedFileTypes.includes(ext);
+		return fileTypeSupported;
+	});
 
-  const booksSettled = await Promise.allSettled(supportedFiles.map(file => {
-    const pathName = path.join(absolutePath, file);
-    const ext = path.extname(file);
-    return createBookAsync(pathName, ext);
-  }));
+	const booksSettled = await Promise.allSettled(supportedFiles.map(file => {
+		const pathName = path.join(absolutePath, file);
+		const ext = path.extname(file);
+		return createBookAsync(pathName, ext);
+	}));
 
-  let books: BookModel[] = [];
-  booksSettled.forEach(book => {
-    book.status === 'fulfilled' && books.push(book.value);
-  });
+	let books: BookModel[] = [];
+	booksSettled.forEach(book => {
+		book.status === 'fulfilled' && books.push(book.value);
+	});
 
-  return books;
+	return books;
 }
 
 async function createBookAsync(url: string, ext: string): Promise<BookModel> {
-  switch (ext) {
-    case FileTypes.EPUB:
-      const epubCreator = new EpubCreator();
-      return epubCreator.createBookAsync(url);
-      break;
-    default:
-      return Promise.reject("Book format not currently supported.");
-  }
+	switch (ext) {
+		case FileTypes.EPUB:
+			const epubCreator = new EpubCreator();
+			return epubCreator.createBookAsync(url);
+			break;
+		default:
+			return Promise.reject("Book format not currently supported.");
+	}
 }
 

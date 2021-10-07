@@ -7,7 +7,7 @@ import CommonProps from '@/renderer/scripts/common-props';
 const rendererPath = window['pathApi'].rendererPath;
 const libraryUrl = window['envApi'].isDevelopment
   ? window['pathApi'].resolve(rendererPath, '..', '..', 'library')
-  : window['pathApi'].resolve(rendererPath, '..', '..', 'library');
+  : "/library"
 
 type LibraryProps = CommonProps
 
