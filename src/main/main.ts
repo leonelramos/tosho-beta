@@ -12,15 +12,18 @@ function createWindow() {
     }
   });
 
-  window.webContents.setWindowOpenHandler(() => {
-    return {
-      action: 'allow',
-      overrideBrowserWindowOptions: {
-        webPreferences: {
-          preload: path.resolve(__dirname, 'readerWinPreload')
+  window.webContents.setWindowOpenHandler(({ url, frameName }) => {
+    if (frameName == 'reader-win') {
+      return {
+        action: 'allow',
+        overrideBrowserWindowOptions: {
+          webPreferences: {
+            preload: path.resolve(__dirname, 'readerWinPreload')
+          }
         }
       }
     }
+    return { action: 'deny' }
   })
 
   if (false) {
