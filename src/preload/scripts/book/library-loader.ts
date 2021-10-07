@@ -1,7 +1,5 @@
 import path from 'path';
-import JSZip from 'jszip';
-import Epub, { Book } from 'epubjs';
-import fs, { readdir } from 'fs/promises';
+import { readdir } from 'fs/promises';
 import supportedFileTypes from '@/shared/scripts/currently-supported-file-types';
 import { BookModel } from '@/shared/models/book';
 import { FileTypes } from '@/preload/scripts/book/file-types-enum';
