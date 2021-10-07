@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Badge, Image } from '@chakra-ui/react';
-import { BookModel } from '@/shared/models/BookModel';
+import { BookModel } from '@/shared/models/book';
 import CommonProps from '@/renderer/scripts/common-props';
 
 export interface BookProps extends CommonProps{
@@ -13,7 +13,7 @@ export interface BookProps extends CommonProps{
 }
 
 function render(url: string) {
-  const newWindow = window.open(); 
+  const newWindow = window.open('', 'reader-win'); 
   if(newWindow !== null) {
     newWindow['bookApi'].render(url); 
   }  

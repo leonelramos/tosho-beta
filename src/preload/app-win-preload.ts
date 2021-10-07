@@ -1,17 +1,18 @@
 import { contextBridge } from 'electron';
 import path from 'path';
 import { isDevelopment } from '@/shared/scripts/environment-variables';
-import renderBook from '@/preload/scripts/book-renderer'
-import { getBooksAsync } from '@/preload/scripts/book-creator';
-import { BookModel } from '@/shared/models/BookModel';
+import renderBook from '@/preload/scripts/book/renderers/book-renderer'
+import { getBooksAsync } from '@/preload/scripts/book/library-loader';
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log("normal preload")
+window.onload = init;
+
+function init() {
+  console.log("app preload")
   const renderAreaId = 'book-render-area';
   const renderArea = document.createElement('div');
   renderArea.id = renderAreaId;
   document.body.appendChild(renderArea);
-});
+};
 
 contextBridge.exposeInMainWorld('pathApi', {
   resolve(url: string, ...pathArgs: string[]) {
@@ -31,7 +32,7 @@ contextBridge.exposeInMainWorld('bookApi', {
   render(url: string) {
     renderBook(url);
   },
-  async getBooks(url: string) {
+  async getLibrary(url: string) {
     return await getBooksAsync(url);
   }
 })
