@@ -18,9 +18,9 @@ Tosho aims to solve the void of cross-platform ebook readers that can handle all
 [ :heavy_check_mark: ] Migrate to typescript. <br>
 [ :heavy_check_mark: ] Add epub support. <br>
 [ :heavy_check_mark: ] Refactor to disable nodeIntegration and enable contextIsolation. <br>
-[ :hourglass_flowing_sand: ] Abstract out current functionality into interfaces. <br>
+[ :heavy_check_mark: ] Abstract out current functionality into interfaces. <br>
+[ :hourglass_flowing_sand: ] Add a persistent file library. <br>
 [ :hourglass_flowing_sand: ] Integrate GraphQL for future functionality plans. <br>
 [ :hourglass_flowing_sand: ] Add a burger main menu. <br>
 [ :hourglass_flowing_sand: ] Add "Add Books" functionality. <br>
 [ :hourglass_flowing_sand: ] Add "Drag and Drop Files" functionality. <br>
-[ :hourglass_flowing_sand: ] Add a persistent file library. <br>
