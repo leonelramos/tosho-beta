@@ -7,7 +7,6 @@ import { EpubCreator } from '@/preload/scripts/book/creators/epub-creator';
 
 export async function getBooksAsync(url: string): Promise<BookModel[]> {
   const files = await readdir(url);
-  console.log("files: ", files);
   return await createBooksAsync(url, files);
 }
 
