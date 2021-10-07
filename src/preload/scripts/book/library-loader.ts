@@ -4,7 +4,6 @@ import Epub, { Book } from 'epubjs';
 import fs, { readdir } from 'fs/promises';
 import supportedFileTypes from '@/shared/scripts/currently-supported-file-types';
 import { BookModel } from '@/shared/models/book';
-import defaultCoverUrl from '@/assets/img/defaultcover.jpg';
 import { FileTypes } from '@/preload/scripts/book/file-types-enum';
 import { EpubCreator } from '@/preload/scripts/book/creators/epub-creator';
 
