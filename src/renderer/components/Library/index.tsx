@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Flex } from '@chakra-ui/layout';
 import LibraryBook from '@/renderer/components/LibraryBook';
-import { BookModel } from '@/shared/models/BookModel';
+import { BookModel } from '@/shared/models/book';
 import CommonProps from '@/renderer/scripts/common-props';
 
 const rendererPath = window['pathApi'].rendererPath;
 const libraryUrl = window['envApi'].isDevelopment
-  ? './library'
+  ? window['pathApi'].resolve(rendererPath, '..', '..', 'library')
   : window['pathApi'].resolve(rendererPath, '..', '..', 'library');
 
 type LibraryProps = CommonProps
@@ -15,13 +15,14 @@ export default function Library(props: LibraryProps) {
   const [books, setBooks] = useState<BookModel[]>([]);
 
   useEffect(() => {
-    window['bookApi'].getBooks(libraryUrl)
+    window['bookApi'].getLibrary(libraryUrl)
     .then((foundBooks: BookModel[]) => { 
       if(foundBooks) {
         setBooks(foundBooks);
       }
     })
-    .catch((err: Error) => console.log(`Error getting your books! ${err}`));
+    .catch((err: Error) => { 
+      throw(`Error getting your books! ${err}`) });
   }, []);
 
   const testDetails = {
@@ -48,7 +49,7 @@ function LibraryContainer(props: CommonProps) {
         flexWrap="wrap"
         justifyContent="space-between"
         margin="15px"
-        className="library-container"
+        className="library-container file-upload-drag-zone"
       >
         {props.children}
       </Flex>
