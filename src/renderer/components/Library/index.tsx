@@ -16,7 +16,7 @@ export default function Library(props: LibraryProps) {
 
   useEffect(() => {
     window['bookApi']
-      .getLibrary(libraryUrl)
+      .importFolder(libraryUrl)
       .then((foundBooks: BookModel[]) => {
         if (foundBooks) {
           setBooks(foundBooks);
@@ -48,7 +48,7 @@ function LibraryContainer(props: CommonProps) {
       <Flex
         flexWrap='wrap'
         justifyContent='space-between'
-        margin='15px'
+        padding='15px'
         className='library-container file-upload-drag-zone'
       >
         {props.children}
