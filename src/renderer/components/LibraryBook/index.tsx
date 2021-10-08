@@ -3,20 +3,20 @@ import { Box, Badge, Image } from '@chakra-ui/react';
 import { BookModel } from '@/shared/models/book';
 import CommonProps from '@/renderer/scripts/common-props';
 
-export interface BookProps extends CommonProps{
-  book: BookModel,
+export interface BookProps extends CommonProps {
+  book: BookModel;
   details: {
-    enable: boolean,
-    status: string,
-    progress: number
-  }
+    enable: boolean;
+    status: string;
+    progress: number;
+  };
 }
 
 function render(url: string) {
-  const newWindow = window.open('', 'reader-win'); 
-  if(newWindow !== null) {
-    newWindow['bookApi'].render(url); 
-  }  
+  const newWindow = window.open();
+  if (newWindow !== null) {
+    newWindow['bookApi'].render(url);
+  }
 }
 
 export default function LibraryBook(props: BookProps) {
@@ -25,7 +25,12 @@ export default function LibraryBook(props: BookProps) {
 
   return (
     <Card>
-      <Image onClick={() => { render(book.url) }} src={book.coverUrl} />
+      <Image
+        onClick={() => {
+          render(book.url);
+        }}
+        src={book.coverUrl}
+      />
       {details.enable && (
         <Details>
           <Status status={details.status} progress={details.progress} />
@@ -42,33 +47,37 @@ function Card(props: CommonProps) {
     maxW: '20vmax',
     borderWidth: '1px',
     borderRadius: 'sm',
-    overflow: 'hidden',
+    overflow: 'hidden'
   };
-  return <Box className="LibraryBook" { ...styles }>{ props.children }</Box>;
+  return (
+    <Box className='LibraryBook' {...styles}>
+      {props.children}
+    </Box>
+  );
 }
 
 function Details(props: CommonProps) {
-  return <Box p="2">{ props.children }</Box>;
+  return <Box p='2'>{props.children}</Box>;
 }
 
 interface StatusProps extends CommonProps {
-  status?: string,
-  progress?: number
+  status?: string;
+  progress?: number;
 }
 
 function Status(props: StatusProps) {
   return (
-    <Box d="flex" alignItems="baseline">
-      <Badge borderRadius="full" px="2" colorScheme="teal">
+    <Box d='flex' alignItems='baseline'>
+      <Badge borderRadius='full' px='2' colorScheme='teal'>
         {props.status}
       </Badge>
       <Box
-        color="gray.500"
-        fontWeight="semibold"
-        letterSpacing="wide"
-        fontSize="xs"
-        textTransform="uppercase"
-        ml="2"
+        color='gray.500'
+        fontWeight='semibold'
+        letterSpacing='wide'
+        fontSize='xs'
+        textTransform='uppercase'
+        ml='2'
       >
         {props.progress}% Done
       </Box>
@@ -77,14 +86,14 @@ function Status(props: StatusProps) {
 }
 
 interface InfoProps extends CommonProps {
-  title?: string,
-  author?: string
+  title?: string;
+  author?: string;
 }
 
 function Info(props: InfoProps) {
   return (
     <>
-      <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
+      <Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
         {props.title}
       </Box>
 

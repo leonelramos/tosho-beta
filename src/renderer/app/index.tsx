@@ -6,8 +6,12 @@ import Library from '@/renderer/components/Library';
 export default function App() {
   return (
     <ChakraProvider>
-      <Menu />
-      <Library />
+      <div id="outer-container">
+        <Menu />
+        <div id="page-wrap">
+          <Library />
+        </div>
+      </div>
     </ChakraProvider>
   );
 }
