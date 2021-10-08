@@ -4,6 +4,7 @@ import supportedFileTypes from '@/shared/scripts/currently-supported-file-types'
 import { BookModel } from '@/shared/models/book';
 import { FileTypes } from '@/preload/scripts/book/file-types-enum';
 import { EpubCreator } from '@/preload/scripts/book/creators/epub-creator';
+import { BookCreator } from '@/preload/scripts/book/creators/book-creator-interface';
 
 export async function getBooksAsync(url: string): Promise<BookModel[]> {
 	const files = await readdir(url);
@@ -32,13 +33,14 @@ async function createBooksAsync(absolutePath: string, files: string[]): Promise<
 }
 
 async function createBookAsync(url: string, ext: string): Promise<BookModel> {
+	let creator: BookCreator;
 	switch (ext) {
 		case FileTypes.EPUB:
-			const epubCreator = new EpubCreator();
-			return epubCreator.createBookAsync(url);
+			creator = new EpubCreator();
 			break;
 		default:
 			return Promise.reject("Book format not currently supported.");
 	}
+	return creator.createBookAsync(url);
 }
 
