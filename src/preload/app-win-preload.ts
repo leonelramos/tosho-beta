@@ -1,4 +1,4 @@
-import { contextBridge } from 'electron';
+import { BrowserWindow, contextBridge, dialog, ipcRenderer } from 'electron';
 import path from 'path';
 import { isDevelopment } from '@/shared/scripts/environment-variables';
 import renderBook from '@/preload/scripts/book/renderers/book-renderer'
@@ -35,7 +35,13 @@ contextBridge.exposeInMainWorld('bookApi', {
 	async importFolder(url: string) {
 		return await importBooksAsync(url);
 	}
-})
+});
+
+contextBridge.exposeInMainWorld('systemApi', {
+	async getDialogFolderUrl() {
+		return await ipcRenderer.invoke('show-dialog-folder');
+	}
+});
 
 
 

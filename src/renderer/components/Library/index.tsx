@@ -33,6 +33,21 @@ export default function Library(props: LibraryProps) {
     progress: 0
   };
 
+  window.onmessage = (event) => {
+    console.log('In library: ', event.data as string);
+    window['bookApi']
+      .importFolder(event.data)
+      .then((foundBooks: BookModel[]) => {
+        if (foundBooks) {
+          const updatedBooks = [...books, ...foundBooks];
+          setBooks(updatedBooks);
+        }
+      })
+      .catch((err: Error) => {
+        throw `Error getting your books! ${err}`;
+      });
+  };
+
   return (
     <LibraryContainer>
       {books.map((book: BookModel, key: number) => {
@@ -55,14 +70,4 @@ function LibraryContainer(props: CommonProps) {
       </Flex>
     </>
   );
-}
-
-const folderPicker = document.getElementById('add-folder');
-
-if (folderPicker) {
-  folderPicker.onchange = (e: Event) => {
-    if (e) {
-      (e.target as HTMLInputElement).files;
-    }
-  };
 }
