@@ -28,8 +28,9 @@ export class FPEpubModule implements IEpubModule {
 			title: details.title,
 			creator: details.creator,
 			description: details.description,
-			language: "",
-			publishedDate: ""
+			language: details.language,
+			publisher: details.publisher,
+			publishedDate: details.pubdate
 		};
 
 		this.htmlCover = await getCoverImg(url, coverRelativePath);
@@ -42,7 +43,7 @@ export class FPEpubModule implements IEpubModule {
 			throw ("Error! The initializer promise has not resolved.");
 		}
 		if (!this.isInitialized) {
-			throw ("Error! You have not initialized the epub 'epub.initAsync()'.")
+			throw ("Error! You have not initialized the epub, call 'epub.initAsync()'.")
 		}
 	}
 
