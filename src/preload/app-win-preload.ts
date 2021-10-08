@@ -2,7 +2,7 @@ import { contextBridge } from 'electron';
 import path from 'path';
 import { isDevelopment } from '@/shared/scripts/environment-variables';
 import renderBook from '@/preload/scripts/book/renderers/book-renderer'
-import { getBooksAsync } from '@/preload/scripts/book/library-loader';
+import { importBooksAsync } from '@/preload/scripts/book/library-loader';
 
 window.onload = init;
 
@@ -32,8 +32,8 @@ contextBridge.exposeInMainWorld('bookApi', {
 	render(url: string) {
 		renderBook(url);
 	},
-	async getLibrary(url: string) {
-		return await getBooksAsync(url);
+	async importFolder(url: string) {
+		return await importBooksAsync(url);
 	}
 })
 

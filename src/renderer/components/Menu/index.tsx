@@ -2,7 +2,7 @@ import CommonProps from '@/renderer/scripts/common-props';
 import React from 'react';
 import { push as SideMenu } from 'react-burger-menu';
 import burgerStyles from './styles/burgerStyles';
-import AddFolder from '@/renderer/components/AddFolder';
+import ImportFolder from '@/renderer/components/ImportFolder';
 
 export default function Menu(props: CommonProps) {
   return (
@@ -12,7 +12,7 @@ export default function Menu(props: CommonProps) {
       outerContainerId={'outer-container'}
       styles={burgerStyles}
     >
-      <AddFolder />
+      <ImportFolder />
       {props.children}
     </SideMenu>
   );

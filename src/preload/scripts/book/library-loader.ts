@@ -6,7 +6,7 @@ import { FileTypes } from '@/preload/scripts/book/file-types-enum';
 import { EpubCreator } from '@/preload/scripts/book/creators/epub-creator';
 import { BookCreator } from '@/preload/scripts/book/creators/book-creator-interface';
 
-export async function getBooksAsync(url: string): Promise<BookModel[]> {
+export async function importBooksAsync(url: string): Promise<BookModel[]> {
 	const files = await readdir(url);
 	return await createBooksAsync(url, files);
 }

@@ -4,9 +4,7 @@ import { AttachmentIcon } from '@chakra-ui/icons';
 import CommonProps from '@/renderer/scripts/common-props';
 import { BsFolderPlus } from 'react-icons/bs';
 
-const channel = new BroadcastChannel('folder-added');
-
-export default function AddFolder(props: CommonProps) {
+export default function ImportFolder(props: CommonProps) {
   return (
     <>
       <Button
@@ -15,7 +13,7 @@ export default function AddFolder(props: CommonProps) {
         variant='solid'
         alignSelf='center'
       >
-        Add Folder
+        Import Folder
       </Button>
     </>
   );
