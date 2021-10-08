@@ -20,7 +20,7 @@ export default function ImportFolder(props: CommonProps) {
 }
 
 async function importFolder() {
-  const result = await window['systemApi'].getDialogFolderUrl();
+  const result = await window.systemApi.getDialogFolderUrl();
   if (result.canceled) {
     return;
   }

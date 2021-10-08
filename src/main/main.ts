@@ -1,5 +1,6 @@
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import path from 'path';
+import eventNames from '@/shared/scripts/event-names';
 import { isDevelopment } from '@/shared/scripts/environment-variables';
 
 function createWindow() {
@@ -37,6 +38,6 @@ app.whenReady().then(() => {
 	});
 });
 
-ipcMain.handle('show-dialog-folder', async (event) => {
+ipcMain.handle(eventNames.showDialogFolder, async (event) => {
 	return await dialog.showOpenDialog({ properties: ['openDirectory'] });
 });

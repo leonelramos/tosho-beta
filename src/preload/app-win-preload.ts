@@ -3,6 +3,8 @@ import path from 'path';
 import { isDevelopment } from '@/shared/scripts/environment-variables';
 import renderBook from '@/preload/scripts/book/renderers/book-renderer'
 import { importBooksAsync } from '@/preload/scripts/book/library-loader';
+import apiNames from '@/shared/scripts/api-names'
+import eventNames from '@/shared/scripts/event-names'
 
 window.onload = init;
 
@@ -14,7 +16,7 @@ function init() {
 	document.body.appendChild(renderArea);
 };
 
-contextBridge.exposeInMainWorld('pathApi', {
+contextBridge.exposeInMainWorld(apiNames.pathApi, {
 	resolve(url: string, ...pathArgs: string[]) {
 		return path.resolve(url, ...pathArgs);
 	},
@@ -24,11 +26,11 @@ contextBridge.exposeInMainWorld('pathApi', {
 	rendererPath: path.resolve(__dirname, 'renderer')
 });
 
-contextBridge.exposeInMainWorld('envApi', {
+contextBridge.exposeInMainWorld(apiNames.envApi, {
 	isDevelopment: isDevelopment
 });
 
-contextBridge.exposeInMainWorld('bookApi', {
+contextBridge.exposeInMainWorld(apiNames.bookApi, {
 	render(url: string) {
 		renderBook(url);
 	},
@@ -37,9 +39,9 @@ contextBridge.exposeInMainWorld('bookApi', {
 	}
 });
 
-contextBridge.exposeInMainWorld('systemApi', {
+contextBridge.exposeInMainWorld(apiNames.systemApi, {
 	async getDialogFolderUrl() {
-		return await ipcRenderer.invoke('show-dialog-folder');
+		return await ipcRenderer.invoke(eventNames.showDialogFolder);
 	}
 });
 

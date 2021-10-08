@@ -15,7 +15,7 @@ export interface BookProps extends CommonProps {
 function render(url: string) {
   const newWindow = window.open();
   if (newWindow !== null) {
-    newWindow['bookApi'].render(url);
+    newWindow.bookApi.render(url);
   }
 }
 
