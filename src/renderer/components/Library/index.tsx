@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import { Flex } from '@chakra-ui/layout';
 import LibraryBook from '@/renderer/components/LibraryBook';
 import { BookModel } from '@/shared/models/book';
 import CommonProps from '@/renderer/scripts/common-props';
 
-const rendererPath = window['pathApi'].rendererPath;
-const libraryUrl = window['envApi'].isDevelopment
-  ? window['pathApi'].resolve(rendererPath, '..', '..', 'library')
+const rendererPath = window.pathApi.rendererPath;
+const libraryUrl = window.envApi.isDevelopment
+  ? window.pathApi.resolve(rendererPath, '..', '..', 'library')
   : '/library';
 
 type LibraryProps = CommonProps;
@@ -15,43 +15,33 @@ export default function Library(props: LibraryProps) {
   const [books, setBooks] = useState<BookModel[]>([]);
 
   useEffect(() => {
-    window['bookApi']
-      .importFolder(libraryUrl)
-      .then((foundBooks: BookModel[]) => {
-        if (foundBooks) {
-          setBooks(foundBooks);
-        }
-      })
-      .catch((err: Error) => {
-        throw `Error getting your books! ${err}`;
-      });
+    grabBooksFrom(libraryUrl).then((libraryBooks) => {
+      if (libraryBooks) {
+        updateBooks(libraryBooks, books, setBooks);
+      }
+    });
   }, []);
 
-  const testDetails = {
+  window.onmessage = (event) => {
+    grabBooksFrom(event.data).then((foundBooks) => {
+      if (foundBooks) {
+        updateBooks(foundBooks, books, setBooks);
+      }
+    });
+  };
+
+  const placeholderDetails = {
     enable: true,
     status: 'UNREAD',
     progress: 0
   };
 
-  window.onmessage = (event) => {
-    console.log('In library: ', event.data as string);
-    window['bookApi']
-      .importFolder(event.data)
-      .then((foundBooks: BookModel[]) => {
-        if (foundBooks) {
-          const updatedBooks = [...books, ...foundBooks];
-          setBooks(updatedBooks);
-        }
-      })
-      .catch((err: Error) => {
-        throw `Error getting your books! ${err}`;
-      });
-  };
-
   return (
     <LibraryContainer>
       {books.map((book: BookModel, key: number) => {
-        return <LibraryBook key={key} book={book} details={testDetails} />;
+        return (
+          <LibraryBook key={key} book={book} details={placeholderDetails} />
+        );
       })}
     </LibraryContainer>
   );
@@ -70,4 +60,18 @@ function LibraryContainer(props: CommonProps) {
       </Flex>
     </>
   );
+}
+
+function updateBooks(
+  booksToAdd: BookModel[],
+  books: BookModel[],
+  setBooks: Dispatch<SetStateAction<BookModel[]>>
+) {
+  const newBooks = booksToAdd.filter((bookToAdd) => !books.includes(bookToAdd));
+  setBooks([...books, ...newBooks]);
+}
+
+async function grabBooksFrom(url: string): Promise<BookModel[]> {
+  const books = await window.bookApi.importFolder(url);
+  return books;
 }
