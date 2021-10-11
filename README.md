@@ -26,6 +26,9 @@ Tosho aims to solve the void of cross-platform ebook readers that can handle all
 ### Goals For The Week Of 10/10 - 10/16
 
 [ :hourglass_flowing_sand: ] Add "Drag and Drop Files" functionality. <br>
-[ :hourglass_flowing_sand: ] Integrate GraphQL for future functionality plans. <br>
 [ :hourglass_flowing_sand: ] Add PDF support. <br>
 [ :hourglass_flowing_sand: ] Add "Remove Book(s)" functionality <br>
+
+### Future goals
+
+[ :hourglass_flowing_sand: ] Integrate GraphQL for future functionality plans. <br>
