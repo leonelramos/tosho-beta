@@ -4,13 +4,13 @@ const webpackShared = require('./webpack.shared');
 
 module.exports = {
   entry: {
-    index: path.resolve(__dirname, '..', 'src', 'renderer', 'index'),
+    index: path.resolve(__dirname, '..', 'src', 'renderer', 'index')
   },
 
   output: {
     filename: '[name].js',
     path: path.resolve(webpackShared.output.path, 'renderer'),
-    assetModuleFilename: '[name].[hash][ext]',
+    assetModuleFilename: '[name].[hash][ext]'
   },
 
   target: 'electron-renderer',
@@ -28,16 +28,23 @@ module.exports = {
 
   // devServer: {
   //   static: {
-  //     directory: path.resolve(webpackShared.output.path, 'renderer'),
+  //     directory: path.resolve(webpackShared.output.path, 'renderer')
   //   },
   //   port: 8080,
-  //   hot: false,
-  //   liveReload: true,
+  //   hot: true,
+  //   liveReload: false
   // },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', 'src', 'renderer', 'templates', 'index'),
+      template: path.resolve(
+        __dirname,
+        '..',
+        'src',
+        'renderer',
+        'templates',
+        'index'
+      )
     })
-  ],
+  ]
 };
