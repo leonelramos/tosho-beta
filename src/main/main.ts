@@ -8,7 +8,6 @@ function createWindow() {
 		width: 800,
 		height: 600,
 		webPreferences: {
-			//nodeIntegrationInSubFrames: true,
 			preload: path.resolve(__dirname, 'appWinPreload')
 		}
 	});
