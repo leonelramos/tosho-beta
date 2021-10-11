@@ -4,26 +4,29 @@ import IEpubModule, { EpubMetadata } from "@/preload/scripts/book/epub/modules/e
 import JSZip from "jszip";
 
 export class FPEpubModule implements IEpubModule {
-	private epub?: Book;
-	private coverUrl = "";
-	private metadata: EpubMetadata = {
+	epub?: Book;
+	#coverUrl = "";
+	#metadata: EpubMetadata = {
 		id: "",
 		title: "",
 		language: ""
 	};
-	private htmlCover = document.createElement('img');
-	private isInitialized = false;
-	private initCalled = false;
+	#htmlCover = document.createElement('img');
+	#isInitialized = false;
+	#initCalled = false;
 
 	async initAsync(url: string): Promise<void> {
-		this.initCalled = true;
+		this.#initCalled = true;
 		this.epub = Epub(url);
+		if (!this.epub) {
+			throw ("Error! Could not open epub file.")
+		}
+		console.log(this.epub)
 		const ready = await this.epub.ready;
 		const details = ready[2];
-		console.log(details)
 		const coverRelativePath = (ready[3] as string).substring(1);
 
-		this.metadata = {
+		this.#metadata = {
 			id: details.identifier,
 			title: details.title,
 			creator: details.creator,
@@ -33,33 +36,33 @@ export class FPEpubModule implements IEpubModule {
 			publishedDate: details.pubdate
 		};
 
-		this.htmlCover = await getCoverImg(url, coverRelativePath);
-		this.coverUrl = this.htmlCover.src;
-		this.isInitialized = true;
+		this.#htmlCover = await getCoverImg(url, coverRelativePath);
+		this.#coverUrl = this.#htmlCover.src;
+		this.#isInitialized = true;
 	}
 
-	private checkInitialized(): void {
-		if (!this.initCalled) {
+	#checkInitialized(): void {
+		if (!this.#initCalled) {
 			throw ("Error! The initializer promise has not resolved.");
 		}
-		if (!this.isInitialized) {
+		if (!this.#isInitialized) {
 			throw ("Error! You have not initialized the epub, call 'epub.initAsync()'.")
 		}
 	}
 
 	getCoverUrl(): string {
-		this.checkInitialized();
-		return this.coverUrl;
+		this.#checkInitialized();
+		return this.#coverUrl;
 	}
 
 	getMetadata(): EpubMetadata {
-		this.checkInitialized();
-		return this.metadata;
+		this.#checkInitialized();
+		return this.#metadata;
 	}
 
 	getImageElement(): HTMLImageElement {
-		this.checkInitialized();
-		return this.htmlCover;
+		this.#checkInitialized();
+		return this.#htmlCover;
 	}
 }
 
