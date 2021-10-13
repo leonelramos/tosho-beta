@@ -2,7 +2,6 @@ export default interface IEpubModule {
 	initAsync(url: string): Promise<void>,
 	getCoverUrl(): string,
 	getMetadata(): EpubMetadata,
-	getImageElement(): HTMLImageElement,
 }
 
 export interface EpubMetadata {
