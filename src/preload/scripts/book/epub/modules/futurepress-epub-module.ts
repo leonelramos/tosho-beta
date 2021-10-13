@@ -1,7 +1,6 @@
 import Epub, { Book } from "epubjs";
-import fs from 'fs/promises'
 import IEpubModule, { EpubMetadata } from "@/preload/scripts/book/epub/modules/epub-module-interface";
-import JSZip from "jszip";
+import getZipItemURL from "@/preload/scripts/util/zip-utils";
 
 export class FPEpubModule implements IEpubModule {
 	epub?: Book;
@@ -35,7 +34,7 @@ export class FPEpubModule implements IEpubModule {
 			publishedDate: details.pubdate
 		};
 
-		this.#coverUrl = await getCoverImgURL(url, coverRelativePath);
+		this.#coverUrl = await getZipItemURL(url, coverRelativePath);
 		this.#isInitialized = true;
 	}
 
@@ -58,14 +57,3 @@ export class FPEpubModule implements IEpubModule {
 		return this.#metadata;
 	}
 }
-
-async function getCoverImgURL(url: string, coverRelativeUrl: string) {
-	const zip = new JSZip();
-	const data = await fs.readFile(url);
-	const result = await zip.loadAsync(data);
-	const blob = await result.files[coverRelativeUrl].async('blob');
-	return URL.createObjectURL(blob);
-}
-
-
-
