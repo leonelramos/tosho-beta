@@ -12,7 +12,7 @@ Tosho aims to solve the void of cross-platform ebook readers that can handle all
 - :negative_squared_cross_mark: : MOSTLY DONE
 - :hourglass_flowing_sand: : IN PROGRESS
 
-### Goals For The Week Of 10/3 - 10/9
+### Immediate Goals
 
 [ :heavy_check_mark: ] Dynamically render, cover art, book links from a system directory into the main view. <br>
 [ :heavy_check_mark: ] Migrate to typescript. <br>
@@ -22,13 +22,11 @@ Tosho aims to solve the void of cross-platform ebook readers that can handle all
 [ :heavy_check_mark: ] Add a burger main menu. <br>
 [ :heavy_check_mark: ] Add "Import Folder" functionality. <br>
 [ :hourglass_flowing_sand: ] Add a persistent file library. <br>
-
-### Goals For The Week Of 10/10 - 10/16
-
+[ :hourglass_flowing_sand: ] Add a library cache. <br>
 [ :hourglass_flowing_sand: ] Add "Drag and Drop Files" functionality. <br>
 [ :hourglass_flowing_sand: ] Add PDF support. <br>
 [ :hourglass_flowing_sand: ] Add "Remove Book(s)" functionality <br>
 
-### Future goals
+### Stretch Goals
 
 [ :hourglass_flowing_sand: ] Integrate GraphQL for future functionality plans. <br>
