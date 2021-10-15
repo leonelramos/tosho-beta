@@ -21,8 +21,8 @@ Tosho aims to solve the void of cross-platform ebook readers that can handle all
 [ :heavy_check_mark: ] Abstract out current functionality into interfaces. <br>
 [ :heavy_check_mark: ] Add a burger main menu. <br>
 [ :heavy_check_mark: ] Add "Import Folder" functionality. <br>
-[ :hourglass_flowing_sand: ] Add a persistent file library. <br>
-[ :hourglass_flowing_sand: ] Add a library cache. <br>
+[ :heavy_check_mark: ] Add a persistent file library. <br>
+[ :hourglass_flowing_sand: ] Add a library covers cache. <br>
 [ :hourglass_flowing_sand: ] Add "Drag and Drop Files" functionality. <br>
 [ :hourglass_flowing_sand: ] Add PDF support. <br>
 [ :hourglass_flowing_sand: ] Add "Remove Book(s)" functionality <br>
