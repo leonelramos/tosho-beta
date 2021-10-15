@@ -10,7 +10,7 @@
     "start": "electron .",
     "build:main": "cross-env NODE_ENV=development webpack --config webpack/webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack/webpack.main.js --mode development",
     "build:rend": "cross-env NODE_ENV=development webpack --config webpack/webpack.renderer.js --mode development",
-    "build": "cross-env NODE_ENV=development webpack --config webpack/webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack/webpack.main.js --mode development && cross-env NODE_ENV=development webpack --config webpack/webpack.renderer.js --mode development",
+    "build": "del-cli ./src/preload/db.json && cross-env NODE_ENV=development webpack --config webpack/webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack/webpack.main.js --mode development && cross-env NODE_ENV=development webpack --config webpack/webpack.renderer.js --mode development",
     "build:test": "cross-env NODE_ENV=production webpack --config webpack/webpack.preload.js --mode production && cross-env NODE_ENV=production webpack --config webpack/webpack.main.js --mode production && cross-env NODE_ENV=production webpack --config webpack/webpack.renderer.js --mode production",
     "main": "cross-env NODE_ENV=development webpack --config webpack/webpack.preload.js --mode development && cross-env NODE_ENV=development webpack --config webpack/webpack.main.js --mode development && electron .",
     "rend": "cross-env NODE_ENV=development webpack-dev-server --config webpack/webpack.renderer.js --mode development"
@@ -48,6 +48,7 @@
     "babel-loader": "^8.2.2",
     "babel-preset-react": "^6.24.1",
     "cross-env": "^7.0.3",
+    "del-cli": "^4.0.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
