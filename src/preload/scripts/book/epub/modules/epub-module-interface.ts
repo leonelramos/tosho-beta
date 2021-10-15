@@ -1,6 +1,7 @@
 export default interface IEpubModule {
 	initAsync(url: string): Promise<void>,
 	getCoverUrl(): string,
+	getCoverRelativePath(): string,
 	getMetadata(): EpubMetadata,
 }
 

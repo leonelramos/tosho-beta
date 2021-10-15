@@ -20,7 +20,7 @@ export interface ISystemApi {
 }
 
 export interface IDbApi {
-  getToshoLibrary(): BookModel[];
+  getToshoLibrary(): Promise<BookModel[]>;
 }
 
 declare global {

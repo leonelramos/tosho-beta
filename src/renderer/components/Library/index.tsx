@@ -15,8 +15,9 @@ export default function Library(props: LibraryProps) {
   const [books, setBooks] = useState<BookModel[]>([]);
 
   useEffect(() => {
-    const libraryBooks = window.dbApi.getToshoLibrary();
-    if (libraryBooks) setBooks(libraryBooks);
+    window.dbApi.getToshoLibrary().then((libraryBooks) => {
+      if (libraryBooks) setBooks(libraryBooks);
+    });
   }, []);
 
   window.onmessage = (event) => {

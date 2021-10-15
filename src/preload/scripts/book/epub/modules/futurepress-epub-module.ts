@@ -12,6 +12,8 @@ export class FPEpubModule implements IEpubModule {
 	};
 	#isInitialized = false;
 	#initCalled = false;
+	#coverRelativePath?: string
+
 
 	async initAsync(url: string): Promise<void> {
 		this.#initCalled = true;
@@ -22,6 +24,7 @@ export class FPEpubModule implements IEpubModule {
 		const ready = await this.epub.ready;
 		const details = ready[2];
 		const coverRelativePath = (ready[3] as string).substring(1);
+		this.#coverRelativePath = coverRelativePath;
 
 		this.#metadata = {
 			id: details.identifier,
@@ -49,6 +52,11 @@ export class FPEpubModule implements IEpubModule {
 	getCoverUrl(): string {
 		this.#checkInitialized();
 		return this.#coverUrl;
+	}
+
+	getCoverRelativePath() {
+		this.#checkInitialized();
+		return this.#coverRelativePath || "";
 	}
 
 	getMetadata(): EpubMetadata {

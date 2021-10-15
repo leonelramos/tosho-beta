@@ -8,6 +8,7 @@ import eventNames from '@/shared/scripts/event-names'
 import { Low, JSONFile } from 'lowdb'
 import { fileURLToPath } from 'url'
 import { BookModel } from '@/shared/models/book';
+import getZipItemUrl from '@/preload/scripts/util/zip-utils'
 
 type Data = {
 	books: BookModel[]
@@ -58,9 +59,12 @@ contextBridge.exposeInMainWorld(apiNames.systemApi, {
 });
 
 contextBridge.exposeInMainWorld(apiNames.dbApi, {
-	getToshoLibrary(): BookModel[] {
-		// create image blobs and reset urls
-		return db.data ? db.data.books : [];
+	async getToshoLibrary(): Promise<BookModel[]> {
+		const books = db.data ? db.data.books : [];
+		await Promise.allSettled(books.map(async book => {
+			book.coverUrl = await getZipItemUrl(book.url, book.coverRelativePath);
+		}));
+		return books;
 	}
 });
 

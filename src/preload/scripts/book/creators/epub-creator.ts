@@ -27,7 +27,7 @@ export class EpubCreator implements BookCreator {
 			dateCreated: "",
 			size: ""
 		}
-		return new BookModel(metadata.id, epubModule.getCoverUrl(), bookInfo, fileInfo);
+		return new BookModel(metadata.id, epubModule.getCoverUrl(), epubModule.getCoverRelativePath(), bookInfo, fileInfo);
 	}
 }
 

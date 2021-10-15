@@ -5,13 +5,15 @@ export class BookModel extends FileModel {
 	author: string;
 	description: string;
 	coverUrl: string;
+	coverRelativePath: string;
 
-	constructor(id: string, coverUrl: string, bookInfo: BookInfo, fileInfo: FileInfo) {
+	constructor(id: string, coverUrl: string, coverRelativePath: string, bookInfo: BookInfo, fileInfo: FileInfo) {
 		super(id, fileInfo);
 		this.coverUrl = coverUrl;
 		this.title = bookInfo.title;
 		this.author = bookInfo.author;
 		this.description = bookInfo.description;
+		this.coverRelativePath = coverRelativePath;
 	}
 }
 
