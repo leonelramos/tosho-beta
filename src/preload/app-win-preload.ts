@@ -75,7 +75,7 @@ function saveBooks(books: BookModel[]) {
 
 async function initDb() {
 	const _dirname = dirname(fileURLToPath(import.meta.url));
-	const file = join(_dirname, 'db.json');
+	const file = join(_dirname, '..', 'db', 'db.json');
 	const adapter = new JSONFile<Data>(file);
 	db = new Low<Data>(adapter);
 	await db.read();
