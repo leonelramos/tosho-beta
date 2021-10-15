@@ -1,10 +1,21 @@
 import { BrowserWindow, contextBridge, dialog, ipcRenderer } from 'electron';
-import path from 'path';
+import path, { join, dirname } from 'path';
 import { isDevelopment } from '@/shared/scripts/environment-variables';
 import renderBook from '@/preload/scripts/book/renderers/book-renderer'
 import { importBooksAsync } from '@/preload/scripts/book/library-loader';
 import apiNames from '@/shared/scripts/api-names'
 import eventNames from '@/shared/scripts/event-names'
+import { Low, JSONFile } from 'lowdb'
+import { fileURLToPath } from 'url'
+import { BookModel } from '@/shared/models/book';
+
+type Data = {
+	books: BookModel[]
+};
+
+let db: Low<Data>;
+
+initDb();
 
 window.onload = init;
 
@@ -35,7 +46,9 @@ contextBridge.exposeInMainWorld(apiNames.bookApi, {
 		renderBook(url);
 	},
 	async importFolder(url: string) {
-		return await importBooksAsync(url);
+		const books = await importBooksAsync(url);
+		saveBooks(books);
+		return books;
 	}
 });
 
@@ -44,6 +57,28 @@ contextBridge.exposeInMainWorld(apiNames.systemApi, {
 		return await ipcRenderer.invoke(eventNames.showDialogFolder);
 	}
 });
+
+contextBridge.exposeInMainWorld(apiNames.dbApi, {
+	getToshoLibrary(): BookModel[] {
+		// create image blobs and reset urls
+		return db.data ? db.data.books : [];
+	}
+});
+
+function saveBooks(books: BookModel[]) {
+	books.forEach(book => { if (db.data) db.data.books.push(book) });
+	db.write();
+}
+
+async function initDb() {
+	const _dirname = dirname(fileURLToPath(import.meta.url));
+	const file = join(_dirname, 'db.json');
+	const adapter = new JSONFile<Data>(file);
+	db = new Low<Data>(adapter);
+	await db.read();
+	db.data = db.data || { books: [] };
+	console.log(db.data);
+}
 
 
 

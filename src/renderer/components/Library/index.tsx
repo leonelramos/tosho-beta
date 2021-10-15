@@ -4,10 +4,10 @@ import LibraryBook from '@/renderer/components/LibraryBook';
 import { BookModel } from '@/shared/models/book';
 import CommonProps from '@/renderer/scripts/common-props';
 
-const rendererPath = window.pathApi.rendererPath;
-const libraryUrl = window.envApi.isDevelopment
-  ? window.pathApi.resolve(rendererPath, '..', '..', 'library')
-  : '/library';
+// const rendererPath = window.pathApi.rendererPath;
+// const libraryUrl = window.envApi.isDevelopment
+//   ? window.pathApi.resolve(rendererPath, '..', '..', 'library')
+//   : '/library';
 
 type LibraryProps = CommonProps;
 
@@ -15,11 +15,8 @@ export default function Library(props: LibraryProps) {
   const [books, setBooks] = useState<BookModel[]>([]);
 
   useEffect(() => {
-    grabBooksFrom(libraryUrl).then((libraryBooks) => {
-      if (libraryBooks) {
-        updateBooks(libraryBooks, books, setBooks);
-      }
-    });
+    const libraryBooks = window.dbApi.getToshoLibrary();
+    if (libraryBooks) setBooks(libraryBooks);
   }, []);
 
   window.onmessage = (event) => {

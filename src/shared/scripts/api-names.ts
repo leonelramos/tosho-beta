@@ -2,5 +2,6 @@ export default {
   pathApi: "pathApi",
   envApi: "envApi",
   bookApi: "bookApi",
-  systemApi: "systemApi"
+  systemApi: "systemApi",
+  dbApi: "dbApi"
 }

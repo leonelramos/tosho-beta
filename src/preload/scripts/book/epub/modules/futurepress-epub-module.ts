@@ -19,7 +19,6 @@ export class FPEpubModule implements IEpubModule {
 		if (!this.epub) {
 			throw ("Error! Could not open epub file.")
 		}
-		console.log(this.epub)
 		const ready = await this.epub.ready;
 		const details = ready[2];
 		const coverRelativePath = (ready[3] as string).substring(1);

@@ -19,11 +19,16 @@ export interface ISystemApi {
   getDialogFolderUrl(): Promise<{ canceled: boolean, filePaths: string[], bookmarks?: string[] }>;
 }
 
+export interface IDbApi {
+  getToshoLibrary(): BookModel[];
+}
+
 declare global {
   interface Window {
     pathApi: IPathApi,
     envApi: IEnvApi,
     bookApi: IBookApi,
-    systemApi: ISystemApi
+    systemApi: ISystemApi,
+    dbApi: IDbApi
   }
 }
