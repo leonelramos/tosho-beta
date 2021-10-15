@@ -20,7 +20,6 @@ initDb();
 window.onload = init;
 
 function init() {
-	console.log("app preload")
 	const renderAreaId = 'book-render-area';
 	const renderArea = document.createElement('div');
 	renderArea.id = renderAreaId;
@@ -77,7 +76,6 @@ async function initDb() {
 	db = new Low<Data>(adapter);
 	await db.read();
 	db.data = db.data || { books: [] };
-	console.log(db.data);
 }
 
 
